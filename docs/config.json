@@ -4,10 +4,11 @@
         "group": "groups",
         "menu": "menu"
     },
-    "baseurl": "http://rclone.org",
     "title": "rclone - rsync for cloud storage",
     "description": "rclone - rsync for cloud storage: google drive, s3, swift, cloudfiles, dropbox, memstore...",
     "canonifyurls": true,
+	"uglyURLs":                   true,
+	"baseURL":						"/digipowers/rclone/docs/public/",
     "blackfriday": {
         "smartDashes": false,
         "plainIDAnchors": true
