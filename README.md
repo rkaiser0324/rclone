@@ -48,3 +48,22 @@ License
 
 This is free software under the terms of MIT the license (check the
 COPYING file included in this package).
+
+S3 Setup
+--------
+
+1. As per this somewhat outdated [blog post](https://aws.amazon.com/blogs/aws/archive-s3-to-glacier/) setup a bucket in the Oregon region:
+    1. Lifecycle rule:
+        * Name: "Archive to Glacier"
+        * Target: whole bucket
+        * Action on Objects: "Archive to the Glacier Storage Class 1 days after the object's creation date."
+        * Action on Incomplete Multipart Uploads: "End and Clean up Incomplete Multipart Uploads 7 days after an upload initiation date."
+    2. Transfer Acceleration: Enable
+2. Using the Windows binary checked into `/path/to/rclone/rclone.exe`, run `rclone config` to set up a new S3 remote:
+    * Set the AWS keys
+    * Set the region
+3. Execute `rclone sync --verbose --exclude-from exclude.txt H:/path/to/folder --max-size 50M remote:<bucketname>/<path/to/folder>`:
+```
+cd H:\path\to\rclone
+rclone sync --verbose --exclude-from exclude.txt H:/shared/digipowers --max-size 50M remote:digipowers-shared-v3/shared/digipowers
+```

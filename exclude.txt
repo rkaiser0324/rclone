@@ -1,4 +1,4 @@
-# a sample exclude rule file
-{boneyard,.git}/**
-*{boneyard,.git}/**
-/docs/**
+# exclude rules as per http://virtualbox-centos/digipowers/rclone/docs/public/filtering/
+*{boneyard}/**
+{docs}/**
+*.{lnk,DS_Store}
