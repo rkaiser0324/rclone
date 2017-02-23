@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rclone Usage">
+    <meta name="author" content="Nick Craig-Wood">
+    <link rel="shortcut icon" type="image/png" href="/digipowers/rclone/docs/public/img/rclone-16x16.png"/>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-51081799-1', 'rclone.org');
+      ga('send', 'pageview');
+    </script>
+
+    <title>Documentation</title>
+    <link rel="canonical" href="/digipowers/rclone/docs/public/digipowers/rclone/docs/public/docs.html">
+        <link href="/digipowers/rclone/docs/public/css/bootstrap.css" rel="stylesheet">
+    <link href="/digipowers/rclone/docs/public/css/font-awesome.css" rel="stylesheet">
+    <link href="/digipowers/rclone/docs/public/css/custom.css" rel="stylesheet">
+
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/digipowers/rclone/docs/public/digipowers/rclone/docs/public/"><i class="fa fa-home"></i> rclone - rsync for cloud storage</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="/digipowers/rclone/docs/public/downloads/"><i class="fa fa-cloud-download"></i> Downloads</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b> Docs</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/digipowers/rclone/docs/public/install/"><i class="fa fa-book"></i> Installation</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/docs/"><i class="fa fa-book"></i> Usage</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/filtering/"><i class="fa fa-book"></i> Filtering</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/changelog/"><i class="fa fa-book"></i> Changelog</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/bugs/"><i class="fa fa-book"></i> Bugs</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/faq/"><i class="fa fa-book"></i> FAQ</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/licence/"><i class="fa fa-book"></i> Licence</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/authors/"><i class="fa fa-book"></i> Authors</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/donate/"><i class="fa fa-book"></i> Donate</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/privacy/"><i class="fa fa-book"></i> Privacy Policy</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b> Commands</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_config/"><i class="fa fa-book"></i> rclone config</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_copy/"><i class="fa fa-book"></i> rclone copy</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_sync/"><i class="fa fa-book"></i> rclone sync</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_move/"><i class="fa fa-book"></i> rclone move</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_purge/"><i class="fa fa-book"></i> rclone purge</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_mkdir/"><i class="fa fa-book"></i> rclone mkdir</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_rmdir/"><i class="fa fa-book"></i> rclone rmdir</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_check/"><i class="fa fa-book"></i> rclone check</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_ls/"><i class="fa fa-book"></i> rclone ls</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_lsd/"><i class="fa fa-book"></i> rclone lsd</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_delete/"><i class="fa fa-book"></i> rclone delete</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_size/"><i class="fa fa-book"></i> rclone size</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/"><i class="fa fa-book"></i> ...and the rest</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b> Storage Systems</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/digipowers/rclone/docs/public/overview/"><i class="fa fa-archive"></i> Overview</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/drive/"><i class="fa fa-google"></i> Drive</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/s3/"><i class="fa fa-amazon"></i> S3</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/swift/"><i class="fa fa-space-shuttle"></i> Swift</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/dropbox/"><i class="fa fa-dropbox"></i> Dropbox</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/googlecloudstorage/"><i class="fa fa-google"></i> Google Cloud Storage</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/amazonclouddrive/"><i class="fa fa-amazon"></i> Amazon Drive</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/onedrive/"><i class="fa fa-windows"></i> Microsoft One Drive</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/hubic/"><i class="fa fa-space-shuttle"></i> Hubic</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/b2/"><i class="fa fa-fire"></i> Backblaze B2</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/local/"><i class="fa fa-file"></i> Local</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/yandex/"><i class="fa fa-space-shuttle"></i> Yandex Disk</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/crypt/"><i class="fa fa-lock"></i> Crypt (encrypts the above)</a></li>
+                  </ul>
+                </li>
+                <li><a href="/digipowers/rclone/docs/public/contact/"><i class="fa fa-envelope"></i> Contact</a></li>
+              </ul>
+            </div>
+        </div>
+    </nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      
+
+<h2 id="configure">Configure</h2>
+
+<p>First you&rsquo;ll need to configure rclone.  As the object storage systems
+have quite complicated authentication these are kept in a config file
+<code>.rclone.conf</code> in your home directory by default.  (You can use the
+<code>--config</code> option to choose a different config file.)</p>
+
+<p>The easiest way to make the config is to run rclone with the config
+option:</p>
+
+<pre><code>rclone config
+</code></pre>
+
+<p>See the following for detailed instructions for</p>
+
+<ul>
+<li><a href="/digipowers/rclone/docs/public/drive/">Google drive</a></li>
+<li><a href="/digipowers/rclone/docs/public/s3/">Amazon S3</a></li>
+<li><a href="/digipowers/rclone/docs/public/swift/">Swift / Rackspace Cloudfiles / Memset Memstore</a></li>
+<li><a href="/digipowers/rclone/docs/public/dropbox/">Dropbox</a></li>
+<li><a href="/digipowers/rclone/docs/public/googlecloudstorage/">Google Cloud Storage</a></li>
+<li><a href="/digipowers/rclone/docs/public/local/">Local filesystem</a></li>
+<li><a href="/digipowers/rclone/docs/public/amazonclouddrive/">Amazon Drive</a></li>
+<li><a href="/digipowers/rclone/docs/public/b2/">Backblaze B2</a></li>
+<li><a href="/digipowers/rclone/docs/public/hubic/">Hubic</a></li>
+<li><a href="/digipowers/rclone/docs/public/onedrive/">Microsoft One Drive</a></li>
+<li><a href="/digipowers/rclone/docs/public/yandex/">Yandex Disk</a></li>
+<li><a href="/digipowers/rclone/docs/public/crypt/">Crypt</a> - to encrypt other remotes</li>
+</ul>
+
+<h2 id="usage">Usage</h2>
+
+<p>Rclone syncs a directory tree from one storage system to another.</p>
+
+<p>Its syntax is like this</p>
+
+<pre><code>Syntax: [options] subcommand &lt;parameters&gt; &lt;parameters...&gt;
+</code></pre>
+
+<p>Source and destination paths are specified by the name you gave the
+storage system in the config file then the sub path, eg
+&ldquo;drive:myfolder&rdquo; to look at &ldquo;myfolder&rdquo; in Google drive.</p>
+
+<p>You can define as many storage paths as you like in the config file.</p>
+
+<h2 id="subcommands">Subcommands</h2>
+
+<p>rclone uses a system of subcommands.  For example</p>
+
+<pre><code>rclone ls remote:path # lists a re
+rclone copy /local/path remote:path # copies /local/path to the remote
+rclone sync /local/path remote:path # syncs /local/path to the remote
+</code></pre>
+
+<p>The main rclone commands with most used first</p>
+
+<ul>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_config/">rclone config</a>  - Enter an interactive configuration session.</li>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_copy/">rclone copy</a>  - Copy files from source to dest, skipping already copied</li>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_sync/">rclone sync</a>  - Make source and dest identical, modifying destination only.</li>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_move/">rclone move</a>  - Move files from source to dest.</li>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_delete/">rclone delete</a>  - Remove the contents of path.</li>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_purge/">rclone purge</a>    - Remove the path and all of its contents.</li>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_mkdir/">rclone mkdir</a>    - Make the path if it doesn&rsquo;t already exist.</li>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_rmdir/">rclone rmdir</a>    - Remove the path.</li>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_check/">rclone check</a>    - Checks the files in the source and destination match.</li>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_ls/">rclone ls</a>  - List all the objects in the the path with size and path.</li>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_lsd/">rclone lsd</a>    - List all directories/containers/buckets in the the path.</li>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_lsl/">rclone lsl</a>    - List all the objects path with modification time, size and path.</li>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_md5sum/">rclone md5sum</a>  - Produces an md5sum file for all the objects in the path.</li>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_sha1sum/">rclone sha1sum</a>    - Produces an sha1sum file for all the objects in the path.</li>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_size/">rclone size</a>  - Returns the total size and number of objects in remote:path.</li>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_version/">rclone version</a>    - Show the version number.</li>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_cleanup/">rclone cleanup</a>    - Clean up the remote if possible</li>
+<li><a href="/digipowers/rclone/docs/public/commands/rclone_dedupe/">rclone dedupe</a>  - Interactively find duplicate files delete/rename them.</li>
+</ul>
+
+<p>See the <a href="/digipowers/rclone/docs/public/commands/">commands index</a> for the full list.</p>
+
+<h2 id="copying-single-files">Copying single files</h2>
+
+<p>rclone normally syncs or copies directories.  However if the source
+remote points to a file, rclone will just copy that file.  The
+destination remote must point to a directory - rclone will give the
+error <code>Failed to create file system for &quot;remote:file&quot;: is a file not a
+directory</code> if it isn&rsquo;t.</p>
+
+<p>For example, suppose you have a remote with a file in called
+<code>test.jpg</code>, then you could copy just that file like this</p>
+
+<pre><code>rclone copy remote:test.jpg /tmp/download
+</code></pre>
+
+<p>The file <code>test.jpg</code> will be placed inside <code>/tmp/download</code>.</p>
+
+<p>This is equivalent to specifying</p>
+
+<pre><code>rclone copy --no-traverse --files-from /tmp/files remote: /tmp/download
+</code></pre>
+
+<p>Where <code>/tmp/files</code> contains the single line</p>
+
+<pre><code>test.jpg
+</code></pre>
+
+<p>It is recommended to use <code>copy</code> when copying single files not <code>sync</code>.
+They have pretty much the same effect but <code>copy</code> will use a lot less
+memory.</p>
+
+<h2 id="quoting-and-the-shell">Quoting and the shell</h2>
+
+<p>When you are typing commands to your computer you are using something
+called the command line shell.  This interprets various characters in
+an OS specific way.</p>
+
+<p>Here are some gotchas which may help users unfamiliar with the shell rules</p>
+
+<h3 id="linux-osx">Linux / OSX</h3>
+
+<p>If your names have spaces or shell metacharacters (eg <code>*</code>, <code>?</code>, <code>$</code>,
+<code>'</code>, <code>&quot;</code> etc) then you must quote them.  Use single quotes <code>'</code> by default.</p>
+
+<pre><code>rclone copy 'Important files?' remote:backup
+</code></pre>
+
+<p>If you want to send a <code>'</code> you will need to use <code>&quot;</code>, eg</p>
+
+<pre><code>rclone copy &quot;O'Reilly Reviews&quot; remote:backup
+</code></pre>
+
+<p>The rules for quoting metacharacters are complicated and if you want
+the full details you&rsquo;ll have to consult the manual page for your
+shell.</p>
+
+<h3 id="windows">Windows</h3>
+
+<p>If your names have spaces in you need to put them in <code>&quot;</code>, eg</p>
+
+<pre><code>rclone copy &quot;E:\folder name\folder name\folder name&quot; remote:backup
+</code></pre>
+
+<p>If you are using the root directory on its own then don&rsquo;t quote it
+(see <a href="https://github.com/ncw/rclone/issues/464">#464</a> for why), eg</p>
+
+<pre><code>rclone copy E:\ remote:backup
+</code></pre>
+
+<h2 id="server-side-copy">Server Side Copy</h2>
+
+<p>Drive, S3, Dropbox, Swift and Google Cloud Storage support server side
+copy.</p>
+
+<p>This means if you want to copy one folder to another then rclone won&rsquo;t
+download all the files and re-upload them; it will instruct the server
+to copy them in place.</p>
+
+<p>Eg</p>
+
+<pre><code>rclone copy s3:oldbucket s3:newbucket
+</code></pre>
+
+<p>Will copy the contents of <code>oldbucket</code> to <code>newbucket</code> without
+downloading and re-uploading.</p>
+
+<p>Remotes which don&rsquo;t support server side copy (eg local) <strong>will</strong>
+download and re-upload in this case.</p>
+
+<p>Server side copies are used with <code>sync</code> and <code>copy</code> and will be
+identified in the log when using the <code>-v</code> flag.</p>
+
+<p>Server side copies will only be attempted if the remote names are the
+same.</p>
+
+<p>This can be used when scripting to make aged backups efficiently, eg</p>
+
+<pre><code>rclone sync remote:current-backup remote:previous-backup
+rclone sync /path/to/files remote:current-backup
+</code></pre>
+
+<h2 id="options">Options</h2>
+
+<p>Rclone has a number of options to control its behaviour.</p>
+
+<p>Options which use TIME use the go time parser.  A duration string is a
+possibly signed sequence of decimal numbers, each with optional
+fraction and a unit suffix, such as &ldquo;300ms&rdquo;, &ldquo;-1.5h&rdquo; or &ldquo;2h45m&rdquo;. Valid
+time units are &ldquo;ns&rdquo;, &ldquo;us&rdquo; (or &ldquo;µs&rdquo;), &ldquo;ms&rdquo;, &ldquo;s&rdquo;, &ldquo;m&rdquo;, &ldquo;h&rdquo;.</p>
+
+<p>Options which use SIZE use kByte by default.  However a suffix of <code>b</code>
+for bytes, <code>k</code> for kBytes, <code>M</code> for MBytes and <code>G</code> for GBytes may be
+used.  These are the binary units, eg 1, 2**10, 2**20, 2**30
+respectively.</p>
+
+<h3 id="bwlimit-size">--bwlimit=SIZE</h3>
+
+<p>Bandwidth limit in kBytes/s, or use suffix b|k|M|G.  The default is <code>0</code>
+which means to not limit bandwidth.</p>
+
+<p>For example to limit bandwidth usage to 10 MBytes/s use <code>--bwlimit 10M</code></p>
+
+<p>This only limits the bandwidth of the data transfer, it doesn&rsquo;t limit
+the bandwith of the directory listings etc.</p>
+
+<p>Note that the units are Bytes/s not Bits/s.  Typically connections are
+measured in Bits/s - to convert divide by 8.  For example let&rsquo;s say
+you have a 10 Mbit/s connection and you wish rclone to use half of it
+- 5 Mbit/s.  This is <sup>5</sup>&frasl;<sub>8</sub> = 0.625MByte/s so you would use a <code>--bwlimit
+0.625M</code> parameter for rclone.</p>
+
+<h3 id="checkers-n">--checkers=N</h3>
+
+<p>The number of checkers to run in parallel.  Checkers do the equality
+checking of files during a sync.  For some storage systems (eg s3,
+swift, dropbox) this can take a significant amount of time so they are
+run in parallel.</p>
+
+<p>The default is to run 8 checkers in parallel.</p>
+
+<h3 id="c-checksum">-c, --checksum</h3>
+
+<p>Normally rclone will look at modification time and size of files to
+see if they are equal.  If you set this flag then rclone will check
+the file hash and size to determine if files are equal.</p>
+
+<p>This is useful when the remote doesn&rsquo;t support setting modified time
+and a more accurate sync is desired than just checking the file size.</p>
+
+<p>This is very useful when transferring between remotes which store the
+same hash type on the object, eg Drive and Swift. For details of which
+remotes support which hash type see the table in the <a href="/digipowers/rclone/docs/public/overview/">overview
+section</a>.</p>
+
+<p>Eg <code>rclone --checksum sync s3:/bucket swift:/bucket</code> would run much
+quicker than without the <code>--checksum</code> flag.</p>
+
+<p>When using this flag, rclone won&rsquo;t update mtimes of remote files if
+they are incorrect as it would normally.</p>
+
+<h3 id="config-config-file">--config=CONFIG_FILE</h3>
+
+<p>Specify the location of the rclone config file.  Normally this is in
+your home directory as a file called <code>.rclone.conf</code>.  If you run
+<code>rclone -h</code> and look at the help for the <code>--config</code> option you will
+see where the default location is for you.  Use this flag to override
+the config location, eg <code>rclone --config=&quot;.myconfig&quot; .config</code>.</p>
+
+<h3 id="contimeout-time">--contimeout=TIME</h3>
+
+<p>Set the connection timeout. This should be in go time format which
+looks like <code>5s</code> for 5 seconds, <code>10m</code> for 10 minutes, or <code>3h30m</code>.</p>
+
+<p>The connection timeout is the amount of time rclone will wait for a
+connection to go through to a remote object storage system.  It is
+<code>1m</code> by default.</p>
+
+<h3 id="dedupe-mode-mode">--dedupe-mode MODE</h3>
+
+<p>Mode to run dedupe command in.  One of <code>interactive</code>, <code>skip</code>, <code>first</code>, <code>newest</code>, <code>oldest</code>, <code>rename</code>.  The default is <code>interactive</code>.  See the dedupe command for more information as to what these options mean.</p>
+
+<h3 id="n-dry-run">-n, --dry-run</h3>
+
+<p>Do a trial run with no permanent changes.  Use this to see what rclone
+would do without actually doing it.  Useful when setting up the <code>sync</code>
+command which deletes files in the destination.</p>
+
+<h3 id="ignore-existing">--ignore-existing</h3>
+
+<p>Using this option will make rclone unconditionally skip all files
+that exist on the destination, no matter the content of these files.</p>
+
+<p>While this isn&rsquo;t a generally recommended option, it can be useful
+in cases where your files change due to encryption. However, it cannot
+correct partial transfers in case a transfer was interrupted.</p>
+
+<h3 id="ignore-size">--ignore-size</h3>
+
+<p>Normally rclone will look at modification time and size of files to
+see if they are equal.  If you set this flag then rclone will check
+only the modification time.  If <code>--checksum</code> is set then it only
+checks the checksum.</p>
+
+<p>It will also cause rclone to skip verifying the sizes are the same
+after transfer.</p>
+
+<p>This can be useful for transferring files to and from onedrive which
+occasionally misreports the size of image files (see
+<a href="https://github.com/ncw/rclone/issues/399">#399</a> for more info).</p>
+
+<h3 id="i-ignore-times">-I, --ignore-times</h3>
+
+<p>Using this option will cause rclone to unconditionally upload all
+files regardless of the state of files on the destination.</p>
+
+<p>Normally rclone would skip any files that have the same
+modification time and are the same size (or have the same checksum if
+using <code>--checksum</code>).</p>
+
+<h3 id="log-file-file">--log-file=FILE</h3>
+
+<p>Log all of rclone&rsquo;s output to FILE.  This is not active by default.
+This can be useful for tracking down problems with syncs in
+combination with the <code>-v</code> flag.  See the Logging section for more
+info.</p>
+
+<h3 id="low-level-retries-number">--low-level-retries NUMBER</h3>
+
+<p>This controls the number of low level retries rclone does.</p>
+
+<p>A low level retry is used to retry a failing operation - typically one
+HTTP request.  This might be uploading a chunk of a big file for
+example.  You will see low level retries in the log with the <code>-v</code>
+flag.</p>
+
+<p>This shouldn&rsquo;t need to be changed from the default in normal
+operations, however if you get a lot of low level retries you may wish
+to reduce the value so rclone moves on to a high level retry (see the
+<code>--retries</code> flag) quicker.</p>
+
+<p>Disable low level retries with <code>--low-level-retries 1</code>.</p>
+
+<h3 id="max-depth-n">--max-depth=N</h3>
+
+<p>This modifies the recursion depth for all the commands except purge.</p>
+
+<p>So if you do <code>rclone --max-depth 1 ls remote:path</code> you will see only
+the files in the top level directory.  Using <code>--max-depth 2</code> means you
+will see all the files in first two directory levels and so on.</p>
+
+<p>For historical reasons the <code>lsd</code> command defaults to using a
+<code>--max-depth</code> of 1 - you can override this with the command line flag.</p>
+
+<p>You can use this command to disable recursion (with <code>--max-depth 1</code>).</p>
+
+<p>Note that if you use this with <code>sync</code> and <code>--delete-excluded</code> the
+files not recursed through are considered excluded and will be deleted
+on the destination.  Test first with <code>--dry-run</code> if you are not sure
+what will happen.</p>
+
+<h3 id="modify-window-time">--modify-window=TIME</h3>
+
+<p>When checking whether a file has been modified, this is the maximum
+allowed time difference that a file can have and still be considered
+equivalent.</p>
+
+<p>The default is <code>1ns</code> unless this is overridden by a remote.  For
+example OS X only stores modification times to the nearest second so
+if you are reading and writing to an OS X filing system this will be
+<code>1s</code> by default.</p>
+
+<p>This command line flag allows you to override that computed default.</p>
+
+<h3 id="no-gzip-encoding">--no-gzip-encoding</h3>
+
+<p>Don&rsquo;t set <code>Accept-Encoding: gzip</code>.  This means that rclone won&rsquo;t ask
+the server for compressed files automatically. Useful if you&rsquo;ve set
+the server to return files with <code>Content-Encoding: gzip</code> but you
+uploaded compressed files.</p>
+
+<p>There is no need to set this in normal operation, and doing so will
+decrease the network transfer efficiency of rclone.</p>
+
+<h3 id="no-update-modtime">--no-update-modtime</h3>
+
+<p>When using this flag, rclone won&rsquo;t update modification times of remote
+files if they are incorrect as it would normally.</p>
+
+<p>This can be used if the remote is being synced with another tool also
+(eg the Google Drive client).</p>
+
+<h3 id="q-quiet">-q, --quiet</h3>
+
+<p>Normally rclone outputs stats and a completion message.  If you set
+this flag it will make as little output as possible.</p>
+
+<h3 id="retries-int">--retries int</h3>
+
+<p>Retry the entire sync if it fails this many times it fails (default 3).</p>
+
+<p>Some remotes can be unreliable and a few retries helps pick up the
+files which didn&rsquo;t get transferred because of errors.</p>
+
+<p>Disable retries with <code>--retries 1</code>.</p>
+
+<h3 id="size-only">--size-only</h3>
+
+<p>Normally rclone will look at modification time and size of files to
+see if they are equal.  If you set this flag then rclone will check
+only the size.</p>
+
+<p>This can be useful transferring files from dropbox which have been
+modified by the desktop sync client which doesn&rsquo;t set checksums of
+modification times in the same way as rclone.</p>
+
+<h3 id="stats-time">--stats=TIME</h3>
+
+<p>Rclone will print stats at regular intervals to show its progress.</p>
+
+<p>This sets the interval.</p>
+
+<p>The default is <code>1m</code>. Use 0 to disable.</p>
+
+<h3 id="delete-before-during-after">--delete-(before,during,after)</h3>
+
+<p>This option allows you to specify when files on your destination are
+deleted when you sync folders.</p>
+
+<p>Specifying the value <code>--delete-before</code> will delete all files present
+on the destination, but not on the source <em>before</em> starting the
+transfer of any new or updated files.  This uses extra memory as it
+has to store the source listing before proceeding.</p>
+
+<p>Specifying <code>--delete-during</code> (default value) will delete files while
+checking and uploading files. This is usually the fastest option.
+Currently this works the same as <code>--delete-after</code> but it may change in
+the future.</p>
+
+<p>Specifying <code>--delete-after</code> will delay deletion of files until all new/updated
+files have been successfully transfered.</p>
+
+<h3 id="timeout-time">--timeout=TIME</h3>
+
+<p>This sets the IO idle timeout.  If a transfer has started but then
+becomes idle for this long it is considered broken and disconnected.</p>
+
+<p>The default is <code>5m</code>.  Set to 0 to disable.</p>
+
+<h3 id="transfers-n">--transfers=N</h3>
+
+<p>The number of file transfers to run in parallel.  It can sometimes be
+useful to set this to a smaller number if the remote is giving a lot
+of timeouts or bigger if you have lots of bandwidth and a fast remote.</p>
+
+<p>The default is to run 4 file transfers in parallel.</p>
+
+<h3 id="u-update">-u, --update</h3>
+
+<p>This forces rclone to skip any files which exist on the destination
+and have a modified time that is newer than the source file.</p>
+
+<p>If an existing destination file has a modification time equal (within
+the computed modify window precision) to the source file&rsquo;s, it will be
+updated if the sizes are different.</p>
+
+<p>On remotes which don&rsquo;t support mod time directly the time checked will
+be the uploaded time.  This means that if uploading to one of these
+remoes, rclone will skip any files which exist on the destination and
+have an uploaded time that is newer than the modification time of the
+source file.</p>
+
+<p>This can be useful when transferring to a remote which doesn&rsquo;t support
+mod times directly as it is more accurate than a <code>--size-only</code> check
+and faster than using <code>--checksum</code>.</p>
+
+<h3 id="v-verbose">-v, --verbose</h3>
+
+<p>If you set this flag, rclone will become very verbose telling you
+about every file it considers and transfers.</p>
+
+<p>Very useful for debugging.</p>
+
+<h3 id="v-version">-V, --version</h3>
+
+<p>Prints the version number</p>
+
+<h2 id="configuration-encryption">Configuration Encryption</h2>
+
+<p>Your configuration file contains information for logging in to
+your cloud services. This means that you should keep your
+<code>.rclone.conf</code> file in a secure location.</p>
+
+<p>If you are in an environment where that isn&rsquo;t possible, you can
+add a password to your configuration. This means that you will
+have to enter the password every time you start rclone.</p>
+
+<p>To add a password to your rclone configuration, execute <code>rclone config</code>.</p>
+
+<pre><code>&gt;rclone config
+Current remotes:
+
+e) Edit existing remote
+n) New remote
+d) Delete remote
+s) Set configuration password
+q) Quit config
+e/n/d/s/q&gt;
+</code></pre>
+
+<p>Go into <code>s</code>, Set configuration password:</p>
+
+<pre><code>e/n/d/s/q&gt; s
+Your configuration is not encrypted.
+If you add a password, you will protect your login information to cloud services.
+a) Add Password
+q) Quit to main menu
+a/q&gt; a
+Enter NEW configuration password:
+password:
+Confirm NEW password:
+password:
+Password set
+Your configuration is encrypted.
+c) Change Password
+u) Unencrypt configuration
+q) Quit to main menu
+c/u/q&gt;
+</code></pre>
+
+<p>Your configuration is now encrypted, and every time you start rclone
+you will now be asked for the password. In the same menu you can
+change the password or completely remove encryption from your
+configuration.</p>
+
+<p>There is no way to recover the configuration if you lose your password.</p>
+
+<p>rclone uses <a href="https://godoc.org/golang.org/x/crypto/nacl/secretbox">nacl secretbox</a>
+which in turn uses XSalsa20 and Poly1305 to encrypt and authenticate
+your configuration with secret-key cryptography.
+The password is SHA-256 hashed, which produces the key for secretbox.
+The hashed password is not stored.</p>
+
+<p>While this provides very good security, we do not recommend storing
+your encrypted rclone configuration in public if it contains sensitive
+information, maybe except if you use a very strong password.</p>
+
+<p>If it is safe in your environment, you can set the <code>RCLONE_CONFIG_PASS</code>
+environment variable to contain your password, in which case it will be
+used for decrypting the configuration.</p>
+
+<p>If you are running rclone inside a script, you might want to disable
+password prompts. To do that, pass the parameter
+<code>--ask-password=false</code> to rclone. This will make rclone fail instead
+of asking for a password if <code>RCLONE_CONFIG_PASS</code> doesn&rsquo;t contain
+a valid password.</p>
+
+<h2 id="developer-options">Developer options</h2>
+
+<p>These options are useful when developing or debugging rclone.  There
+are also some more remote specific options which aren&rsquo;t documented
+here which are used for testing.  These start with remote name eg
+<code>--drive-test-option</code> - see the docs for the remote in question.</p>
+
+<h3 id="cpuprofile-file">--cpuprofile=FILE</h3>
+
+<p>Write CPU profile to file.  This can be analysed with <code>go tool pprof</code>.</p>
+
+<h3 id="dump-bodies">--dump-bodies</h3>
+
+<p>Dump HTTP headers and bodies - may contain sensitive info.  Can be
+very verbose.  Useful for debugging only.</p>
+
+<h3 id="dump-filters">--dump-filters</h3>
+
+<p>Dump the filters to the output.  Useful to see exactly what include
+and exclude options are filtering on.</p>
+
+<h3 id="dump-headers">--dump-headers</h3>
+
+<p>Dump HTTP headers - may contain sensitive info.  Can be very verbose.
+Useful for debugging only.</p>
+
+<h3 id="memprofile-file">--memprofile=FILE</h3>
+
+<p>Write memory profile to file. This can be analysed with <code>go tool pprof</code>.</p>
+
+<h3 id="no-check-certificate-true-false">--no-check-certificate=true/false</h3>
+
+<p><code>--no-check-certificate</code> controls whether a client verifies the
+server&rsquo;s certificate chain and host name.
+If <code>--no-check-certificate</code> is true, TLS accepts any certificate
+presented by the server and any host name in that certificate.
+In this mode, TLS is susceptible to man-in-the-middle attacks.</p>
+
+<p>This option defaults to <code>false</code>.</p>
+
+<p><strong>This should be used only for testing.</strong></p>
+
+<h3 id="no-traverse">--no-traverse</h3>
+
+<p>The <code>--no-traverse</code> flag controls whether the destination file system
+is traversed when using the <code>copy</code> or <code>move</code> commands.</p>
+
+<p>If you are only copying a small number of files and/or have a large
+number of files on the destination then <code>--no-traverse</code> will stop
+rclone listing the destination and save time.</p>
+
+<p>However if you are copying a large number of files, escpecially if you
+are doing a copy where lots of the files haven&rsquo;t changed and won&rsquo;t
+need copying then you shouldn&rsquo;t use <code>--no-traverse</code>.</p>
+
+<p>It can also be used to reduce the memory usage of rclone when copying
+- <code>rclone --no-traverse copy src dst</code> won&rsquo;t load either the source or
+destination listings into memory so will use the minimum amount of
+memory.</p>
+
+<h2 id="filtering">Filtering</h2>
+
+<p>For the filtering options</p>
+
+<ul>
+<li><code>--delete-excluded</code></li>
+<li><code>--filter</code></li>
+<li><code>--filter-from</code></li>
+<li><code>--exclude</code></li>
+<li><code>--exclude-from</code></li>
+<li><code>--include</code></li>
+<li><code>--include-from</code></li>
+<li><code>--files-from</code></li>
+<li><code>--min-size</code></li>
+<li><code>--max-size</code></li>
+<li><code>--min-age</code></li>
+<li><code>--max-age</code></li>
+<li><code>--dump-filters</code></li>
+</ul>
+
+<p>See the <a href="/digipowers/rclone/docs/public/filtering/">filtering section</a>.</p>
+
+<h2 id="logging">Logging</h2>
+
+<p>rclone has 3 levels of logging, <code>Error</code>, <code>Info</code> and <code>Debug</code>.</p>
+
+<p>By default rclone logs <code>Error</code> and <code>Info</code> to standard error and <code>Debug</code>
+to standard output.  This means you can redirect standard output and
+standard error to different places.</p>
+
+<p>By default rclone will produce <code>Error</code> and <code>Info</code> level messages.</p>
+
+<p>If you use the <code>-q</code> flag, rclone will only produce <code>Error</code> messages.</p>
+
+<p>If you use the <code>-v</code> flag, rclone will produce <code>Error</code>, <code>Info</code> and
+<code>Debug</code> messages.</p>
+
+<p>If you use the <code>--log-file=FILE</code> option, rclone will redirect <code>Error</code>,
+<code>Info</code> and <code>Debug</code> messages along with standard error to FILE.</p>
+
+<h2 id="exit-code">Exit Code</h2>
+
+<p>If any errors occurred during the command, rclone with an exit code of
+<code>1</code>.  This allows scripts to detect when rclone operations have failed.</p>
+
+<p>During the startup phase rclone will exit immediately if an error is
+detected in the configuration.  There will always be a log message
+immediately before exiting.</p>
+
+<p>When rclone is running it will accumulate errors as it goes along, and
+only exit with an non-zero exit code if (after retries) there were no
+transfers with errors remaining.  For every error counted there will
+be a high priority log message (visibile with <code>-q</code>) showing the
+message and which file caused the problem. A high priority message is
+also shown when starting a retry so the user can see that any previous
+error messages may not be valid after the retry. If rclone has done a
+retry it will log a high priority message if the retry was successful.</p>
+
+    </div>
+    
+    
+    <div class="col-md-3">
+          <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Share and Enjoy.</h4>
+        </div>
+        <div class="panel-body">
+          <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="njcw">Tweet</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+          <br><g:plusone size="medium"></g:plusone>
+          <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+          <br><iframe src="http://ghbtns.com/github-btn.html?user=ncw&repo=rclone&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20"></iframe>
+          <br><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Frclone.org%2F&amp;width=110&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=21&amp;appId=232073720158744" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:21px;" allowTransparency="true"></iframe>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Links.</h4>
+        </div>
+        <div class="panel-body">
+          <p>
+            <i class="fa fa-comments" aria-hidden="true"></i> <a href="https://forum.rclone.org">Rclone forum.</a><br />
+            <i class="fa fa-github" aria-hidden="true"></i> <a href="https://github.com/ncw/rclone">Github project.</a><br />
+            <i class="fa fa-google-plus" aria-hidden="true"></i> <a href="https://google.com/+RcloneOrg" rel="publisher">Google+ page.</a><br />
+            <i class="fa fa-twitter" aria-hidden="true"></i> <a href="https://twitter.com/njcw">@njcw</a>
+          </p>
+        </div>
+    </div>
+
+    </div>
+  </div>
+          <footer>
+            <div class="row">
+                <hr>
+                <div class="col-sm-12">
+                    <p>&copy; <a href="http://www.craig-wood.com/nick/">Nick Craig-Wood</a> 2014-2016<br>
+                      Website hosted on a <a href="http://www.memset.com/cloud/storage/">FREE <span style="font-weight: bold; font-family: arial black, arial, sans-serif; font-style: italic;">MEMSET MEMSTORE™</span></a>,
+                      uploaded with <a href="http://rclone.org">rclone</a>
+                      and built with <a href="https://github.com/spf13/hugo">Hugo</a></p>
+                </div>
+            </div>
+        </footer>
+
+</div>
+
+    <script src="/digipowers/rclone/docs/public/js/jquery.js"></script>
+    <script src="/digipowers/rclone/docs/public/js/bootstrap.js"></script>
+    <script src="/digipowers/rclone/docs/public/js/custom.js"></script>
+</body>
+</html>
+

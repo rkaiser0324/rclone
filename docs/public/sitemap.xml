@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/index.html</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_authorize/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_cat/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_check/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_cleanup/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_config/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_copy/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_dedupe/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_delete/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_genautocomplete/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_gendocs/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_ls/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_lsd/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_lsl/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_md5sum/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_mkdir/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_mount/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_move/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_purge/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_rmdir/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_sha1sum/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_size/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_sync/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/commands/rclone_version/</loc>
+    <lastmod>2016-08-24T23:47:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/changelog.html</loc>
+    <lastmod>2016-08-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/downloads.html</loc>
+    <lastmod>2016-08-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/crypt.html</loc>
+    <lastmod>2016-07-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/amazonclouddrive.html</loc>
+    <lastmod>2016-07-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/s3.html</loc>
+    <lastmod>2016-07-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/b2.html</loc>
+    <lastmod>2016-06-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/hubic.html</loc>
+    <lastmod>2016-05-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/authors.html</loc>
+    <lastmod>2016-04-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/drive.html</loc>
+    <lastmod>2016-04-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/install.html</loc>
+    <lastmod>2016-03-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/dropbox.html</loc>
+    <lastmod>2016-02-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/filtering.html</loc>
+    <lastmod>2016-02-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/remote_setup.html</loc>
+    <lastmod>2016-01-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/yandex.html</loc>
+    <lastmod>2015-12-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/onedrive.html</loc>
+    <lastmod>2015-10-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/googlecloudstorage.html</loc>
+    <lastmod>2015-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/donate.html</loc>
+    <lastmod>2015-09-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/overview.html</loc>
+    <lastmod>2015-09-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/about.html</loc>
+    <lastmod>2015-09-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/faq.html</loc>
+    <lastmod>2015-08-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/privacy.html</loc>
+    <lastmod>2015-08-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/docs.html</loc>
+    <lastmod>2015-06-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/licence.html</loc>
+    <lastmod>2015-06-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/bugs.html</loc>
+    <lastmod>2014-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/contact.html</loc>
+    <lastmod>2014-04-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/local.html</loc>
+    <lastmod>2014-04-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/digipowers/rclone/docs/public/swift.html</loc>
+    <lastmod>2014-04-26T00:00:00+00:00</lastmod>
+  </url>
+  
+</urlset>

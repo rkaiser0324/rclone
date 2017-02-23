@@ -1,0 +1,1677 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title> on rclone - rsync for cloud storage </title>
+    <link>/digipowers/rclone/docs/public/index.xml</link>
+    <language>en-US</language>
+    <author>Enthusiastic Hugo User</author>
+    <rights>Copyright (c) 2014, Enthusiastic Hugo User; all rights reserved.</rights>
+    <updated>Wed, 24 Aug 2016 23:47:55 &#43;0100</updated>
+    
+    <item>
+      <title>rclone</title>
+      <link>/digipowers/rclone/docs/public/commands/rclone/</link>
+      <pubDate>Wed, 24 Aug 2016 23:47:55 &#43;0100</pubDate>
+      <author>Enthusiastic Hugo User</author>
+      <guid>/digipowers/rclone/docs/public/commands/rclone/</guid>
+      <description>
+
+&lt;h2 id=&#34;rclone&#34;&gt;rclone&lt;/h2&gt;
+
+&lt;p&gt;Sync files and directories to and from local and remote object stores - v1.33-DEV&lt;/p&gt;
+
+&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;
+
+&lt;p&gt;Rclone is a command line program to sync files and directories to and
+from various cloud storage systems, such as:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Google Drive&lt;/li&gt;
+&lt;li&gt;Amazon S3&lt;/li&gt;
+&lt;li&gt;Openstack Swift / Rackspace cloud files / Memset Memstore&lt;/li&gt;
+&lt;li&gt;Dropbox&lt;/li&gt;
+&lt;li&gt;Google Cloud Storage&lt;/li&gt;
+&lt;li&gt;Amazon Drive&lt;/li&gt;
+&lt;li&gt;Microsoft One Drive&lt;/li&gt;
+&lt;li&gt;Hubic&lt;/li&gt;
+&lt;li&gt;Backblaze B2&lt;/li&gt;
+&lt;li&gt;Yandex Disk&lt;/li&gt;
+&lt;li&gt;The local filesystem&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Features&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;MD5/SHA1 hashes checked at all times for file integrity&lt;/li&gt;
+&lt;li&gt;Timestamps preserved on files&lt;/li&gt;
+&lt;li&gt;Partial syncs supported on a whole file basis&lt;/li&gt;
+&lt;li&gt;Copy mode to just copy new/changed files&lt;/li&gt;
+&lt;li&gt;Sync (one way) mode to make a directory identical&lt;/li&gt;
+&lt;li&gt;Check mode to check for file hash equality&lt;/li&gt;
+&lt;li&gt;Can sync to and from network, eg two different cloud accounts&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;See the home page for installation, usage, documentation, changelog
+and configuration walkthroughs.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://rclone.org/&#34;&gt;http://rclone.org/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;options&#34;&gt;Options&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;      --acd-templink-threshold int      Files &amp;gt;= this size will be downloaded via their tempLink.
+      --acd-upload-wait-time duration   Time to wait after a failed complete upload to see if it appears. (default 2m0s)
+      --ask-password                    Allow prompt for password for encrypted configuration. (default true)
+      --b2-chunk-size int               Upload chunk size. Must fit in memory.
+      --b2-test-mode string             A flag string for X-Bz-Test-Mode header.
+      --b2-upload-cutoff int            Cutoff for switching to chunked upload
+      --b2-versions                     Include old versions in directory listings.
+      --bwlimit int                     Bandwidth limit in kBytes/s, or use suffix b|k|M|G
+      --checkers int                    Number of checkers to run in parallel. (default 8)
+  -c, --checksum                        Skip based on checksum &amp;amp; size, not mod-time &amp;amp; size
+      --config string                   Config file. (default &amp;quot;/home/ncw/.rclone.conf&amp;quot;)
+      --contimeout duration             Connect timeout (default 1m0s)
+      --cpuprofile string               Write cpu profile to file
+      --delete-after                    When synchronizing, delete files on destination after transfering
+      --delete-before                   When synchronizing, delete files on destination before transfering
+      --delete-during                   When synchronizing, delete files during transfer (default)
+      --delete-excluded                 Delete files on dest excluded from sync
+      --drive-auth-owner-only           Only consider files owned by the authenticated user. Requires drive-full-list.
+      --drive-chunk-size int            Upload chunk size. Must a power of 2 &amp;gt;= 256k.
+      --drive-formats string            Comma separated list of preferred formats for downloading Google docs. (default &amp;quot;docx,xlsx,pptx,svg&amp;quot;)
+      --drive-full-list                 Use a full listing for directory list. More data but usually quicker. (obsolete)
+      --drive-upload-cutoff int         Cutoff for switching to chunked upload
+      --drive-use-trash                 Send files to the trash instead of deleting permanently.
+      --dropbox-chunk-size int          Upload chunk size. Max 150M.
+  -n, --dry-run                         Do a trial run with no permanent changes
+      --dump-bodies                     Dump HTTP headers and bodies - may contain sensitive info
+      --dump-filters                    Dump the filters to the output
+      --dump-headers                    Dump HTTP headers - may contain sensitive info
+      --exclude string                  Exclude files matching pattern
+      --exclude-from string             Read exclude patterns from file
+      --files-from string               Read list of source-file names from file
+  -f, --filter string                   Add a file-filtering rule
+      --filter-from string              Read filtering patterns from a file
+      --ignore-existing                 Skip all files that exist on destination
+      --ignore-size                     Ignore size when skipping use mod-time or checksum.
+  -I, --ignore-times                    Don&#39;t skip files that match size and time - transfer all files
+      --include string                  Include files matching pattern
+      --include-from string             Read include patterns from file
+      --log-file string                 Log everything to this file
+      --low-level-retries int           Number of low level retries to do. (default 10)
+      --max-age string                  Don&#39;t transfer any file older than this in s or suffix ms|s|m|h|d|w|M|y
+      --max-depth int                   If set limits the recursion depth to this. (default -1)
+      --max-size int                    Don&#39;t transfer any file larger than this in k or suffix b|k|M|G
+      --memprofile string               Write memory profile to file
+      --min-age string                  Don&#39;t transfer any file younger than this in s or suffix ms|s|m|h|d|w|M|y
+      --min-size int                    Don&#39;t transfer any file smaller than this in k or suffix b|k|M|G
+      --modify-window duration          Max time diff to be considered the same (default 1ns)
+      --no-check-certificate            Do not verify the server SSL certificate. Insecure.
+      --no-gzip-encoding                Don&#39;t set Accept-Encoding: gzip.
+      --no-traverse                     Don&#39;t traverse destination file system on copy.
+      --no-update-modtime               Don&#39;t update destination mod-time if files identical.
+      --onedrive-chunk-size int         Above this size files will be chunked - must be multiple of 320k.
+      --onedrive-upload-cutoff int      Cutoff for switching to chunked upload - must be &amp;lt;= 100MB
+  -q, --quiet                           Print as little stuff as possible
+      --retries int                     Retry operations this many times if they fail (default 3)
+      --size-only                       Skip based on size only, not mod-time or checksum
+      --stats duration                  Interval to print stats (0 to disable) (default 1m0s)
+      --swift-chunk-size int            Above this size files will be chunked into a _segments container.
+      --timeout duration                IO idle timeout (default 5m0s)
+      --transfers int                   Number of file transfers to run in parallel. (default 4)
+  -u, --update                          Skip files that are newer on the destination.
+  -v, --verbose                         Print lots more stuff
+  -V, --version                         Print the version number
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;see-also&#34;&gt;SEE ALSO&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_authorize/&#34;&gt;rclone authorize&lt;/a&gt;    - Remote authorization.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_cat/&#34;&gt;rclone cat&lt;/a&gt;    - Concatenates any files and sends them to stdout.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_check/&#34;&gt;rclone check&lt;/a&gt;    - Checks the files in the source and destination match.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_cleanup/&#34;&gt;rclone cleanup&lt;/a&gt;    - Clean up the remote if possible&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_config/&#34;&gt;rclone config&lt;/a&gt;  - Enter an interactive configuration session.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_copy/&#34;&gt;rclone copy&lt;/a&gt;  - Copy files from source to dest, skipping already copied&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_dedupe/&#34;&gt;rclone dedupe&lt;/a&gt;  - Interactively find duplicate files delete/rename them.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_delete/&#34;&gt;rclone delete&lt;/a&gt;  - Remove the contents of path.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_genautocomplete/&#34;&gt;rclone genautocomplete&lt;/a&gt;    - Output bash completion script for rclone.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_gendocs/&#34;&gt;rclone gendocs&lt;/a&gt;    - Output markdown docs for rclone to the directory supplied.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_ls/&#34;&gt;rclone ls&lt;/a&gt;  - List all the objects in the the path with size and path.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_lsd/&#34;&gt;rclone lsd&lt;/a&gt;    - List all directories/containers/buckets in the the path.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_lsl/&#34;&gt;rclone lsl&lt;/a&gt;    - List all the objects path with modification time, size and path.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_md5sum/&#34;&gt;rclone md5sum&lt;/a&gt;  - Produces an md5sum file for all the objects in the path.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_mkdir/&#34;&gt;rclone mkdir&lt;/a&gt;    - Make the path if it doesn&amp;rsquo;t already exist.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_mount/&#34;&gt;rclone mount&lt;/a&gt;    - Mount the remote as a mountpoint. &lt;strong&gt;EXPERIMENTAL&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_move/&#34;&gt;rclone move&lt;/a&gt;  - Move files from source to dest.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_purge/&#34;&gt;rclone purge&lt;/a&gt;    - Remove the path and all of its contents.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_rmdir/&#34;&gt;rclone rmdir&lt;/a&gt;    - Remove the path if empty.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_sha1sum/&#34;&gt;rclone sha1sum&lt;/a&gt;    - Produces an sha1sum file for all the objects in the path.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_size/&#34;&gt;rclone size&lt;/a&gt;  - Prints the total size and number of objects in remote:path.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_sync/&#34;&gt;rclone sync&lt;/a&gt;  - Make source and dest identical, modifying destination only.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_version/&#34;&gt;rclone version&lt;/a&gt;    - Show the version number.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&#34;auto-generated-by-spf13-cobra-on-24-aug-2016&#34;&gt;Auto generated by spf13/cobra on 24-Aug-2016&lt;/h6&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>rclone authorize</title>
+      <link>/digipowers/rclone/docs/public/commands/rclone_authorize/</link>
+      <pubDate>Wed, 24 Aug 2016 23:47:55 &#43;0100</pubDate>
+      <author>Enthusiastic Hugo User</author>
+      <guid>/digipowers/rclone/docs/public/commands/rclone_authorize/</guid>
+      <description>
+
+&lt;h2 id=&#34;rclone-authorize&#34;&gt;rclone authorize&lt;/h2&gt;
+
+&lt;p&gt;Remote authorization.&lt;/p&gt;
+
+&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;
+
+&lt;p&gt;Remote authorization. Used to authorize a remote or headless
+rclone from a machine with a browser - use as instructed by
+rclone config.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone authorize
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;options-inherited-from-parent-commands&#34;&gt;Options inherited from parent commands&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;      --acd-templink-threshold int      Files &amp;gt;= this size will be downloaded via their tempLink.
+      --acd-upload-wait-time duration   Time to wait after a failed complete upload to see if it appears. (default 2m0s)
+      --ask-password                    Allow prompt for password for encrypted configuration. (default true)
+      --b2-chunk-size int               Upload chunk size. Must fit in memory.
+      --b2-test-mode string             A flag string for X-Bz-Test-Mode header.
+      --b2-upload-cutoff int            Cutoff for switching to chunked upload
+      --b2-versions                     Include old versions in directory listings.
+      --bwlimit int                     Bandwidth limit in kBytes/s, or use suffix b|k|M|G
+      --checkers int                    Number of checkers to run in parallel. (default 8)
+  -c, --checksum                        Skip based on checksum &amp;amp; size, not mod-time &amp;amp; size
+      --config string                   Config file. (default &amp;quot;/home/ncw/.rclone.conf&amp;quot;)
+      --contimeout duration             Connect timeout (default 1m0s)
+      --cpuprofile string               Write cpu profile to file
+      --delete-after                    When synchronizing, delete files on destination after transfering
+      --delete-before                   When synchronizing, delete files on destination before transfering
+      --delete-during                   When synchronizing, delete files during transfer (default)
+      --delete-excluded                 Delete files on dest excluded from sync
+      --drive-auth-owner-only           Only consider files owned by the authenticated user. Requires drive-full-list.
+      --drive-chunk-size int            Upload chunk size. Must a power of 2 &amp;gt;= 256k.
+      --drive-formats string            Comma separated list of preferred formats for downloading Google docs. (default &amp;quot;docx,xlsx,pptx,svg&amp;quot;)
+      --drive-full-list                 Use a full listing for directory list. More data but usually quicker. (obsolete)
+      --drive-upload-cutoff int         Cutoff for switching to chunked upload
+      --drive-use-trash                 Send files to the trash instead of deleting permanently.
+      --dropbox-chunk-size int          Upload chunk size. Max 150M.
+  -n, --dry-run                         Do a trial run with no permanent changes
+      --dump-bodies                     Dump HTTP headers and bodies - may contain sensitive info
+      --dump-filters                    Dump the filters to the output
+      --dump-headers                    Dump HTTP headers - may contain sensitive info
+      --exclude string                  Exclude files matching pattern
+      --exclude-from string             Read exclude patterns from file
+      --files-from string               Read list of source-file names from file
+  -f, --filter string                   Add a file-filtering rule
+      --filter-from string              Read filtering patterns from a file
+      --ignore-existing                 Skip all files that exist on destination
+      --ignore-size                     Ignore size when skipping use mod-time or checksum.
+  -I, --ignore-times                    Don&#39;t skip files that match size and time - transfer all files
+      --include string                  Include files matching pattern
+      --include-from string             Read include patterns from file
+      --log-file string                 Log everything to this file
+      --low-level-retries int           Number of low level retries to do. (default 10)
+      --max-age string                  Don&#39;t transfer any file older than this in s or suffix ms|s|m|h|d|w|M|y
+      --max-depth int                   If set limits the recursion depth to this. (default -1)
+      --max-size int                    Don&#39;t transfer any file larger than this in k or suffix b|k|M|G
+      --memprofile string               Write memory profile to file
+      --min-age string                  Don&#39;t transfer any file younger than this in s or suffix ms|s|m|h|d|w|M|y
+      --min-size int                    Don&#39;t transfer any file smaller than this in k or suffix b|k|M|G
+      --modify-window duration          Max time diff to be considered the same (default 1ns)
+      --no-check-certificate            Do not verify the server SSL certificate. Insecure.
+      --no-gzip-encoding                Don&#39;t set Accept-Encoding: gzip.
+      --no-traverse                     Don&#39;t traverse destination file system on copy.
+      --no-update-modtime               Don&#39;t update destination mod-time if files identical.
+      --onedrive-chunk-size int         Above this size files will be chunked - must be multiple of 320k.
+      --onedrive-upload-cutoff int      Cutoff for switching to chunked upload - must be &amp;lt;= 100MB
+  -q, --quiet                           Print as little stuff as possible
+      --retries int                     Retry operations this many times if they fail (default 3)
+      --size-only                       Skip based on size only, not mod-time or checksum
+      --stats duration                  Interval to print stats (0 to disable) (default 1m0s)
+      --swift-chunk-size int            Above this size files will be chunked into a _segments container.
+      --timeout duration                IO idle timeout (default 5m0s)
+      --transfers int                   Number of file transfers to run in parallel. (default 4)
+  -u, --update                          Skip files that are newer on the destination.
+  -v, --verbose                         Print lots more stuff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;see-also&#34;&gt;SEE ALSO&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone/&#34;&gt;rclone&lt;/a&gt;    - Sync files and directories to and from local and remote object stores - v1.33-DEV&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&#34;auto-generated-by-spf13-cobra-on-24-aug-2016&#34;&gt;Auto generated by spf13/cobra on 24-Aug-2016&lt;/h6&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>rclone cat</title>
+      <link>/digipowers/rclone/docs/public/commands/rclone_cat/</link>
+      <pubDate>Wed, 24 Aug 2016 23:47:55 &#43;0100</pubDate>
+      <author>Enthusiastic Hugo User</author>
+      <guid>/digipowers/rclone/docs/public/commands/rclone_cat/</guid>
+      <description>
+
+&lt;h2 id=&#34;rclone-cat&#34;&gt;rclone cat&lt;/h2&gt;
+
+&lt;p&gt;Concatenates any files and sends them to stdout.&lt;/p&gt;
+
+&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;
+
+&lt;p&gt;rclone cat sends any files to standard output.&lt;/p&gt;
+
+&lt;p&gt;You can use it like this to output a single file&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone cat remote:path/to/file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or like this to output any file in dir or subdirectories.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone cat remote:path/to/dir
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or like this to output any .txt files in dir or subdirectories.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone --include &amp;quot;*.txt&amp;quot; cat remote:path/to/dir
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone cat remote:path
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;options-inherited-from-parent-commands&#34;&gt;Options inherited from parent commands&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;      --acd-templink-threshold int      Files &amp;gt;= this size will be downloaded via their tempLink.
+      --acd-upload-wait-time duration   Time to wait after a failed complete upload to see if it appears. (default 2m0s)
+      --ask-password                    Allow prompt for password for encrypted configuration. (default true)
+      --b2-chunk-size int               Upload chunk size. Must fit in memory.
+      --b2-test-mode string             A flag string for X-Bz-Test-Mode header.
+      --b2-upload-cutoff int            Cutoff for switching to chunked upload
+      --b2-versions                     Include old versions in directory listings.
+      --bwlimit int                     Bandwidth limit in kBytes/s, or use suffix b|k|M|G
+      --checkers int                    Number of checkers to run in parallel. (default 8)
+  -c, --checksum                        Skip based on checksum &amp;amp; size, not mod-time &amp;amp; size
+      --config string                   Config file. (default &amp;quot;/home/ncw/.rclone.conf&amp;quot;)
+      --contimeout duration             Connect timeout (default 1m0s)
+      --cpuprofile string               Write cpu profile to file
+      --delete-after                    When synchronizing, delete files on destination after transfering
+      --delete-before                   When synchronizing, delete files on destination before transfering
+      --delete-during                   When synchronizing, delete files during transfer (default)
+      --delete-excluded                 Delete files on dest excluded from sync
+      --drive-auth-owner-only           Only consider files owned by the authenticated user. Requires drive-full-list.
+      --drive-chunk-size int            Upload chunk size. Must a power of 2 &amp;gt;= 256k.
+      --drive-formats string            Comma separated list of preferred formats for downloading Google docs. (default &amp;quot;docx,xlsx,pptx,svg&amp;quot;)
+      --drive-full-list                 Use a full listing for directory list. More data but usually quicker. (obsolete)
+      --drive-upload-cutoff int         Cutoff for switching to chunked upload
+      --drive-use-trash                 Send files to the trash instead of deleting permanently.
+      --dropbox-chunk-size int          Upload chunk size. Max 150M.
+  -n, --dry-run                         Do a trial run with no permanent changes
+      --dump-bodies                     Dump HTTP headers and bodies - may contain sensitive info
+      --dump-filters                    Dump the filters to the output
+      --dump-headers                    Dump HTTP headers - may contain sensitive info
+      --exclude string                  Exclude files matching pattern
+      --exclude-from string             Read exclude patterns from file
+      --files-from string               Read list of source-file names from file
+  -f, --filter string                   Add a file-filtering rule
+      --filter-from string              Read filtering patterns from a file
+      --ignore-existing                 Skip all files that exist on destination
+      --ignore-size                     Ignore size when skipping use mod-time or checksum.
+  -I, --ignore-times                    Don&#39;t skip files that match size and time - transfer all files
+      --include string                  Include files matching pattern
+      --include-from string             Read include patterns from file
+      --log-file string                 Log everything to this file
+      --low-level-retries int           Number of low level retries to do. (default 10)
+      --max-age string                  Don&#39;t transfer any file older than this in s or suffix ms|s|m|h|d|w|M|y
+      --max-depth int                   If set limits the recursion depth to this. (default -1)
+      --max-size int                    Don&#39;t transfer any file larger than this in k or suffix b|k|M|G
+      --memprofile string               Write memory profile to file
+      --min-age string                  Don&#39;t transfer any file younger than this in s or suffix ms|s|m|h|d|w|M|y
+      --min-size int                    Don&#39;t transfer any file smaller than this in k or suffix b|k|M|G
+      --modify-window duration          Max time diff to be considered the same (default 1ns)
+      --no-check-certificate            Do not verify the server SSL certificate. Insecure.
+      --no-gzip-encoding                Don&#39;t set Accept-Encoding: gzip.
+      --no-traverse                     Don&#39;t traverse destination file system on copy.
+      --no-update-modtime               Don&#39;t update destination mod-time if files identical.
+      --onedrive-chunk-size int         Above this size files will be chunked - must be multiple of 320k.
+      --onedrive-upload-cutoff int      Cutoff for switching to chunked upload - must be &amp;lt;= 100MB
+  -q, --quiet                           Print as little stuff as possible
+      --retries int                     Retry operations this many times if they fail (default 3)
+      --size-only                       Skip based on size only, not mod-time or checksum
+      --stats duration                  Interval to print stats (0 to disable) (default 1m0s)
+      --swift-chunk-size int            Above this size files will be chunked into a _segments container.
+      --timeout duration                IO idle timeout (default 5m0s)
+      --transfers int                   Number of file transfers to run in parallel. (default 4)
+  -u, --update                          Skip files that are newer on the destination.
+  -v, --verbose                         Print lots more stuff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;see-also&#34;&gt;SEE ALSO&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone/&#34;&gt;rclone&lt;/a&gt;    - Sync files and directories to and from local and remote object stores - v1.33-DEV&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&#34;auto-generated-by-spf13-cobra-on-24-aug-2016&#34;&gt;Auto generated by spf13/cobra on 24-Aug-2016&lt;/h6&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>rclone check</title>
+      <link>/digipowers/rclone/docs/public/commands/rclone_check/</link>
+      <pubDate>Wed, 24 Aug 2016 23:47:55 &#43;0100</pubDate>
+      <author>Enthusiastic Hugo User</author>
+      <guid>/digipowers/rclone/docs/public/commands/rclone_check/</guid>
+      <description>
+
+&lt;h2 id=&#34;rclone-check&#34;&gt;rclone check&lt;/h2&gt;
+
+&lt;p&gt;Checks the files in the source and destination match.&lt;/p&gt;
+
+&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;
+
+&lt;p&gt;Checks the files in the source and destination match.  It
+compares sizes and MD5SUMs and prints a report of files which
+don&amp;rsquo;t match.  It doesn&amp;rsquo;t alter the source or destination.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;--size-only&lt;/code&gt; may be used to only compare the sizes, not the MD5SUMs.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone check source:path dest:path
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;options-inherited-from-parent-commands&#34;&gt;Options inherited from parent commands&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;      --acd-templink-threshold int      Files &amp;gt;= this size will be downloaded via their tempLink.
+      --acd-upload-wait-time duration   Time to wait after a failed complete upload to see if it appears. (default 2m0s)
+      --ask-password                    Allow prompt for password for encrypted configuration. (default true)
+      --b2-chunk-size int               Upload chunk size. Must fit in memory.
+      --b2-test-mode string             A flag string for X-Bz-Test-Mode header.
+      --b2-upload-cutoff int            Cutoff for switching to chunked upload
+      --b2-versions                     Include old versions in directory listings.
+      --bwlimit int                     Bandwidth limit in kBytes/s, or use suffix b|k|M|G
+      --checkers int                    Number of checkers to run in parallel. (default 8)
+  -c, --checksum                        Skip based on checksum &amp;amp; size, not mod-time &amp;amp; size
+      --config string                   Config file. (default &amp;quot;/home/ncw/.rclone.conf&amp;quot;)
+      --contimeout duration             Connect timeout (default 1m0s)
+      --cpuprofile string               Write cpu profile to file
+      --delete-after                    When synchronizing, delete files on destination after transfering
+      --delete-before                   When synchronizing, delete files on destination before transfering
+      --delete-during                   When synchronizing, delete files during transfer (default)
+      --delete-excluded                 Delete files on dest excluded from sync
+      --drive-auth-owner-only           Only consider files owned by the authenticated user. Requires drive-full-list.
+      --drive-chunk-size int            Upload chunk size. Must a power of 2 &amp;gt;= 256k.
+      --drive-formats string            Comma separated list of preferred formats for downloading Google docs. (default &amp;quot;docx,xlsx,pptx,svg&amp;quot;)
+      --drive-full-list                 Use a full listing for directory list. More data but usually quicker. (obsolete)
+      --drive-upload-cutoff int         Cutoff for switching to chunked upload
+      --drive-use-trash                 Send files to the trash instead of deleting permanently.
+      --dropbox-chunk-size int          Upload chunk size. Max 150M.
+  -n, --dry-run                         Do a trial run with no permanent changes
+      --dump-bodies                     Dump HTTP headers and bodies - may contain sensitive info
+      --dump-filters                    Dump the filters to the output
+      --dump-headers                    Dump HTTP headers - may contain sensitive info
+      --exclude string                  Exclude files matching pattern
+      --exclude-from string             Read exclude patterns from file
+      --files-from string               Read list of source-file names from file
+  -f, --filter string                   Add a file-filtering rule
+      --filter-from string              Read filtering patterns from a file
+      --ignore-existing                 Skip all files that exist on destination
+      --ignore-size                     Ignore size when skipping use mod-time or checksum.
+  -I, --ignore-times                    Don&#39;t skip files that match size and time - transfer all files
+      --include string                  Include files matching pattern
+      --include-from string             Read include patterns from file
+      --log-file string                 Log everything to this file
+      --low-level-retries int           Number of low level retries to do. (default 10)
+      --max-age string                  Don&#39;t transfer any file older than this in s or suffix ms|s|m|h|d|w|M|y
+      --max-depth int                   If set limits the recursion depth to this. (default -1)
+      --max-size int                    Don&#39;t transfer any file larger than this in k or suffix b|k|M|G
+      --memprofile string               Write memory profile to file
+      --min-age string                  Don&#39;t transfer any file younger than this in s or suffix ms|s|m|h|d|w|M|y
+      --min-size int                    Don&#39;t transfer any file smaller than this in k or suffix b|k|M|G
+      --modify-window duration          Max time diff to be considered the same (default 1ns)
+      --no-check-certificate            Do not verify the server SSL certificate. Insecure.
+      --no-gzip-encoding                Don&#39;t set Accept-Encoding: gzip.
+      --no-traverse                     Don&#39;t traverse destination file system on copy.
+      --no-update-modtime               Don&#39;t update destination mod-time if files identical.
+      --onedrive-chunk-size int         Above this size files will be chunked - must be multiple of 320k.
+      --onedrive-upload-cutoff int      Cutoff for switching to chunked upload - must be &amp;lt;= 100MB
+  -q, --quiet                           Print as little stuff as possible
+      --retries int                     Retry operations this many times if they fail (default 3)
+      --size-only                       Skip based on size only, not mod-time or checksum
+      --stats duration                  Interval to print stats (0 to disable) (default 1m0s)
+      --swift-chunk-size int            Above this size files will be chunked into a _segments container.
+      --timeout duration                IO idle timeout (default 5m0s)
+      --transfers int                   Number of file transfers to run in parallel. (default 4)
+  -u, --update                          Skip files that are newer on the destination.
+  -v, --verbose                         Print lots more stuff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;see-also&#34;&gt;SEE ALSO&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone/&#34;&gt;rclone&lt;/a&gt;    - Sync files and directories to and from local and remote object stores - v1.33-DEV&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&#34;auto-generated-by-spf13-cobra-on-24-aug-2016&#34;&gt;Auto generated by spf13/cobra on 24-Aug-2016&lt;/h6&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>rclone cleanup</title>
+      <link>/digipowers/rclone/docs/public/commands/rclone_cleanup/</link>
+      <pubDate>Wed, 24 Aug 2016 23:47:55 &#43;0100</pubDate>
+      <author>Enthusiastic Hugo User</author>
+      <guid>/digipowers/rclone/docs/public/commands/rclone_cleanup/</guid>
+      <description>
+
+&lt;h2 id=&#34;rclone-cleanup&#34;&gt;rclone cleanup&lt;/h2&gt;
+
+&lt;p&gt;Clean up the remote if possible&lt;/p&gt;
+
+&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;
+
+&lt;p&gt;Clean up the remote if possible.  Empty the trash or delete old file
+versions. Not supported by all remotes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone cleanup remote:path
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;options-inherited-from-parent-commands&#34;&gt;Options inherited from parent commands&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;      --acd-templink-threshold int      Files &amp;gt;= this size will be downloaded via their tempLink.
+      --acd-upload-wait-time duration   Time to wait after a failed complete upload to see if it appears. (default 2m0s)
+      --ask-password                    Allow prompt for password for encrypted configuration. (default true)
+      --b2-chunk-size int               Upload chunk size. Must fit in memory.
+      --b2-test-mode string             A flag string for X-Bz-Test-Mode header.
+      --b2-upload-cutoff int            Cutoff for switching to chunked upload
+      --b2-versions                     Include old versions in directory listings.
+      --bwlimit int                     Bandwidth limit in kBytes/s, or use suffix b|k|M|G
+      --checkers int                    Number of checkers to run in parallel. (default 8)
+  -c, --checksum                        Skip based on checksum &amp;amp; size, not mod-time &amp;amp; size
+      --config string                   Config file. (default &amp;quot;/home/ncw/.rclone.conf&amp;quot;)
+      --contimeout duration             Connect timeout (default 1m0s)
+      --cpuprofile string               Write cpu profile to file
+      --delete-after                    When synchronizing, delete files on destination after transfering
+      --delete-before                   When synchronizing, delete files on destination before transfering
+      --delete-during                   When synchronizing, delete files during transfer (default)
+      --delete-excluded                 Delete files on dest excluded from sync
+      --drive-auth-owner-only           Only consider files owned by the authenticated user. Requires drive-full-list.
+      --drive-chunk-size int            Upload chunk size. Must a power of 2 &amp;gt;= 256k.
+      --drive-formats string            Comma separated list of preferred formats for downloading Google docs. (default &amp;quot;docx,xlsx,pptx,svg&amp;quot;)
+      --drive-full-list                 Use a full listing for directory list. More data but usually quicker. (obsolete)
+      --drive-upload-cutoff int         Cutoff for switching to chunked upload
+      --drive-use-trash                 Send files to the trash instead of deleting permanently.
+      --dropbox-chunk-size int          Upload chunk size. Max 150M.
+  -n, --dry-run                         Do a trial run with no permanent changes
+      --dump-bodies                     Dump HTTP headers and bodies - may contain sensitive info
+      --dump-filters                    Dump the filters to the output
+      --dump-headers                    Dump HTTP headers - may contain sensitive info
+      --exclude string                  Exclude files matching pattern
+      --exclude-from string             Read exclude patterns from file
+      --files-from string               Read list of source-file names from file
+  -f, --filter string                   Add a file-filtering rule
+      --filter-from string              Read filtering patterns from a file
+      --ignore-existing                 Skip all files that exist on destination
+      --ignore-size                     Ignore size when skipping use mod-time or checksum.
+  -I, --ignore-times                    Don&#39;t skip files that match size and time - transfer all files
+      --include string                  Include files matching pattern
+      --include-from string             Read include patterns from file
+      --log-file string                 Log everything to this file
+      --low-level-retries int           Number of low level retries to do. (default 10)
+      --max-age string                  Don&#39;t transfer any file older than this in s or suffix ms|s|m|h|d|w|M|y
+      --max-depth int                   If set limits the recursion depth to this. (default -1)
+      --max-size int                    Don&#39;t transfer any file larger than this in k or suffix b|k|M|G
+      --memprofile string               Write memory profile to file
+      --min-age string                  Don&#39;t transfer any file younger than this in s or suffix ms|s|m|h|d|w|M|y
+      --min-size int                    Don&#39;t transfer any file smaller than this in k or suffix b|k|M|G
+      --modify-window duration          Max time diff to be considered the same (default 1ns)
+      --no-check-certificate            Do not verify the server SSL certificate. Insecure.
+      --no-gzip-encoding                Don&#39;t set Accept-Encoding: gzip.
+      --no-traverse                     Don&#39;t traverse destination file system on copy.
+      --no-update-modtime               Don&#39;t update destination mod-time if files identical.
+      --onedrive-chunk-size int         Above this size files will be chunked - must be multiple of 320k.
+      --onedrive-upload-cutoff int      Cutoff for switching to chunked upload - must be &amp;lt;= 100MB
+  -q, --quiet                           Print as little stuff as possible
+      --retries int                     Retry operations this many times if they fail (default 3)
+      --size-only                       Skip based on size only, not mod-time or checksum
+      --stats duration                  Interval to print stats (0 to disable) (default 1m0s)
+      --swift-chunk-size int            Above this size files will be chunked into a _segments container.
+      --timeout duration                IO idle timeout (default 5m0s)
+      --transfers int                   Number of file transfers to run in parallel. (default 4)
+  -u, --update                          Skip files that are newer on the destination.
+  -v, --verbose                         Print lots more stuff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;see-also&#34;&gt;SEE ALSO&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone/&#34;&gt;rclone&lt;/a&gt;    - Sync files and directories to and from local and remote object stores - v1.33-DEV&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&#34;auto-generated-by-spf13-cobra-on-24-aug-2016&#34;&gt;Auto generated by spf13/cobra on 24-Aug-2016&lt;/h6&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>rclone config</title>
+      <link>/digipowers/rclone/docs/public/commands/rclone_config/</link>
+      <pubDate>Wed, 24 Aug 2016 23:47:55 &#43;0100</pubDate>
+      <author>Enthusiastic Hugo User</author>
+      <guid>/digipowers/rclone/docs/public/commands/rclone_config/</guid>
+      <description>
+
+&lt;h2 id=&#34;rclone-config&#34;&gt;rclone config&lt;/h2&gt;
+
+&lt;p&gt;Enter an interactive configuration session.&lt;/p&gt;
+
+&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;
+
+&lt;p&gt;Enter an interactive configuration session.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone config
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;options-inherited-from-parent-commands&#34;&gt;Options inherited from parent commands&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;      --acd-templink-threshold int      Files &amp;gt;= this size will be downloaded via their tempLink.
+      --acd-upload-wait-time duration   Time to wait after a failed complete upload to see if it appears. (default 2m0s)
+      --ask-password                    Allow prompt for password for encrypted configuration. (default true)
+      --b2-chunk-size int               Upload chunk size. Must fit in memory.
+      --b2-test-mode string             A flag string for X-Bz-Test-Mode header.
+      --b2-upload-cutoff int            Cutoff for switching to chunked upload
+      --b2-versions                     Include old versions in directory listings.
+      --bwlimit int                     Bandwidth limit in kBytes/s, or use suffix b|k|M|G
+      --checkers int                    Number of checkers to run in parallel. (default 8)
+  -c, --checksum                        Skip based on checksum &amp;amp; size, not mod-time &amp;amp; size
+      --config string                   Config file. (default &amp;quot;/home/ncw/.rclone.conf&amp;quot;)
+      --contimeout duration             Connect timeout (default 1m0s)
+      --cpuprofile string               Write cpu profile to file
+      --delete-after                    When synchronizing, delete files on destination after transfering
+      --delete-before                   When synchronizing, delete files on destination before transfering
+      --delete-during                   When synchronizing, delete files during transfer (default)
+      --delete-excluded                 Delete files on dest excluded from sync
+      --drive-auth-owner-only           Only consider files owned by the authenticated user. Requires drive-full-list.
+      --drive-chunk-size int            Upload chunk size. Must a power of 2 &amp;gt;= 256k.
+      --drive-formats string            Comma separated list of preferred formats for downloading Google docs. (default &amp;quot;docx,xlsx,pptx,svg&amp;quot;)
+      --drive-full-list                 Use a full listing for directory list. More data but usually quicker. (obsolete)
+      --drive-upload-cutoff int         Cutoff for switching to chunked upload
+      --drive-use-trash                 Send files to the trash instead of deleting permanently.
+      --dropbox-chunk-size int          Upload chunk size. Max 150M.
+  -n, --dry-run                         Do a trial run with no permanent changes
+      --dump-bodies                     Dump HTTP headers and bodies - may contain sensitive info
+      --dump-filters                    Dump the filters to the output
+      --dump-headers                    Dump HTTP headers - may contain sensitive info
+      --exclude string                  Exclude files matching pattern
+      --exclude-from string             Read exclude patterns from file
+      --files-from string               Read list of source-file names from file
+  -f, --filter string                   Add a file-filtering rule
+      --filter-from string              Read filtering patterns from a file
+      --ignore-existing                 Skip all files that exist on destination
+      --ignore-size                     Ignore size when skipping use mod-time or checksum.
+  -I, --ignore-times                    Don&#39;t skip files that match size and time - transfer all files
+      --include string                  Include files matching pattern
+      --include-from string             Read include patterns from file
+      --log-file string                 Log everything to this file
+      --low-level-retries int           Number of low level retries to do. (default 10)
+      --max-age string                  Don&#39;t transfer any file older than this in s or suffix ms|s|m|h|d|w|M|y
+      --max-depth int                   If set limits the recursion depth to this. (default -1)
+      --max-size int                    Don&#39;t transfer any file larger than this in k or suffix b|k|M|G
+      --memprofile string               Write memory profile to file
+      --min-age string                  Don&#39;t transfer any file younger than this in s or suffix ms|s|m|h|d|w|M|y
+      --min-size int                    Don&#39;t transfer any file smaller than this in k or suffix b|k|M|G
+      --modify-window duration          Max time diff to be considered the same (default 1ns)
+      --no-check-certificate            Do not verify the server SSL certificate. Insecure.
+      --no-gzip-encoding                Don&#39;t set Accept-Encoding: gzip.
+      --no-traverse                     Don&#39;t traverse destination file system on copy.
+      --no-update-modtime               Don&#39;t update destination mod-time if files identical.
+      --onedrive-chunk-size int         Above this size files will be chunked - must be multiple of 320k.
+      --onedrive-upload-cutoff int      Cutoff for switching to chunked upload - must be &amp;lt;= 100MB
+  -q, --quiet                           Print as little stuff as possible
+      --retries int                     Retry operations this many times if they fail (default 3)
+      --size-only                       Skip based on size only, not mod-time or checksum
+      --stats duration                  Interval to print stats (0 to disable) (default 1m0s)
+      --swift-chunk-size int            Above this size files will be chunked into a _segments container.
+      --timeout duration                IO idle timeout (default 5m0s)
+      --transfers int                   Number of file transfers to run in parallel. (default 4)
+  -u, --update                          Skip files that are newer on the destination.
+  -v, --verbose                         Print lots more stuff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;see-also&#34;&gt;SEE ALSO&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone/&#34;&gt;rclone&lt;/a&gt;    - Sync files and directories to and from local and remote object stores - v1.33-DEV&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&#34;auto-generated-by-spf13-cobra-on-24-aug-2016&#34;&gt;Auto generated by spf13/cobra on 24-Aug-2016&lt;/h6&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>rclone copy</title>
+      <link>/digipowers/rclone/docs/public/commands/rclone_copy/</link>
+      <pubDate>Wed, 24 Aug 2016 23:47:55 &#43;0100</pubDate>
+      <author>Enthusiastic Hugo User</author>
+      <guid>/digipowers/rclone/docs/public/commands/rclone_copy/</guid>
+      <description>
+
+&lt;h2 id=&#34;rclone-copy&#34;&gt;rclone copy&lt;/h2&gt;
+
+&lt;p&gt;Copy files from source to dest, skipping already copied&lt;/p&gt;
+
+&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;
+
+&lt;p&gt;Copy the source to the destination.  Doesn&amp;rsquo;t transfer
+unchanged files, testing by size and modification time or
+MD5SUM.  Doesn&amp;rsquo;t delete files from the destination.&lt;/p&gt;
+
+&lt;p&gt;Note that it is always the contents of the directory that is synced,
+not the directory so when source:path is a directory, it&amp;rsquo;s the
+contents of source:path that are copied, not the directory name and
+contents.&lt;/p&gt;
+
+&lt;p&gt;If dest:path doesn&amp;rsquo;t exist, it is created and the source:path contents
+go there.&lt;/p&gt;
+
+&lt;p&gt;For example&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone copy source:sourcepath dest:destpath
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say there are two files in sourcepath&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sourcepath/one.txt
+sourcepath/two.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This copies them to&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;destpath/one.txt
+destpath/two.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Not to&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;destpath/sourcepath/one.txt
+destpath/sourcepath/two.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you are familiar with &lt;code&gt;rsync&lt;/code&gt;, rclone always works as if you had
+written a trailing / - meaning &amp;ldquo;copy the contents of this directory&amp;rdquo;.
+This applies to all commands and whether you are talking about the
+source or destination.&lt;/p&gt;
+
+&lt;p&gt;See the &lt;code&gt;--no-traverse&lt;/code&gt; option for controlling whether rclone lists
+the destination directory or not.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone copy source:path dest:path
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;options-inherited-from-parent-commands&#34;&gt;Options inherited from parent commands&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;      --acd-templink-threshold int      Files &amp;gt;= this size will be downloaded via their tempLink.
+      --acd-upload-wait-time duration   Time to wait after a failed complete upload to see if it appears. (default 2m0s)
+      --ask-password                    Allow prompt for password for encrypted configuration. (default true)
+      --b2-chunk-size int               Upload chunk size. Must fit in memory.
+      --b2-test-mode string             A flag string for X-Bz-Test-Mode header.
+      --b2-upload-cutoff int            Cutoff for switching to chunked upload
+      --b2-versions                     Include old versions in directory listings.
+      --bwlimit int                     Bandwidth limit in kBytes/s, or use suffix b|k|M|G
+      --checkers int                    Number of checkers to run in parallel. (default 8)
+  -c, --checksum                        Skip based on checksum &amp;amp; size, not mod-time &amp;amp; size
+      --config string                   Config file. (default &amp;quot;/home/ncw/.rclone.conf&amp;quot;)
+      --contimeout duration             Connect timeout (default 1m0s)
+      --cpuprofile string               Write cpu profile to file
+      --delete-after                    When synchronizing, delete files on destination after transfering
+      --delete-before                   When synchronizing, delete files on destination before transfering
+      --delete-during                   When synchronizing, delete files during transfer (default)
+      --delete-excluded                 Delete files on dest excluded from sync
+      --drive-auth-owner-only           Only consider files owned by the authenticated user. Requires drive-full-list.
+      --drive-chunk-size int            Upload chunk size. Must a power of 2 &amp;gt;= 256k.
+      --drive-formats string            Comma separated list of preferred formats for downloading Google docs. (default &amp;quot;docx,xlsx,pptx,svg&amp;quot;)
+      --drive-full-list                 Use a full listing for directory list. More data but usually quicker. (obsolete)
+      --drive-upload-cutoff int         Cutoff for switching to chunked upload
+      --drive-use-trash                 Send files to the trash instead of deleting permanently.
+      --dropbox-chunk-size int          Upload chunk size. Max 150M.
+  -n, --dry-run                         Do a trial run with no permanent changes
+      --dump-bodies                     Dump HTTP headers and bodies - may contain sensitive info
+      --dump-filters                    Dump the filters to the output
+      --dump-headers                    Dump HTTP headers - may contain sensitive info
+      --exclude string                  Exclude files matching pattern
+      --exclude-from string             Read exclude patterns from file
+      --files-from string               Read list of source-file names from file
+  -f, --filter string                   Add a file-filtering rule
+      --filter-from string              Read filtering patterns from a file
+      --ignore-existing                 Skip all files that exist on destination
+      --ignore-size                     Ignore size when skipping use mod-time or checksum.
+  -I, --ignore-times                    Don&#39;t skip files that match size and time - transfer all files
+      --include string                  Include files matching pattern
+      --include-from string             Read include patterns from file
+      --log-file string                 Log everything to this file
+      --low-level-retries int           Number of low level retries to do. (default 10)
+      --max-age string                  Don&#39;t transfer any file older than this in s or suffix ms|s|m|h|d|w|M|y
+      --max-depth int                   If set limits the recursion depth to this. (default -1)
+      --max-size int                    Don&#39;t transfer any file larger than this in k or suffix b|k|M|G
+      --memprofile string               Write memory profile to file
+      --min-age string                  Don&#39;t transfer any file younger than this in s or suffix ms|s|m|h|d|w|M|y
+      --min-size int                    Don&#39;t transfer any file smaller than this in k or suffix b|k|M|G
+      --modify-window duration          Max time diff to be considered the same (default 1ns)
+      --no-check-certificate            Do not verify the server SSL certificate. Insecure.
+      --no-gzip-encoding                Don&#39;t set Accept-Encoding: gzip.
+      --no-traverse                     Don&#39;t traverse destination file system on copy.
+      --no-update-modtime               Don&#39;t update destination mod-time if files identical.
+      --onedrive-chunk-size int         Above this size files will be chunked - must be multiple of 320k.
+      --onedrive-upload-cutoff int      Cutoff for switching to chunked upload - must be &amp;lt;= 100MB
+  -q, --quiet                           Print as little stuff as possible
+      --retries int                     Retry operations this many times if they fail (default 3)
+      --size-only                       Skip based on size only, not mod-time or checksum
+      --stats duration                  Interval to print stats (0 to disable) (default 1m0s)
+      --swift-chunk-size int            Above this size files will be chunked into a _segments container.
+      --timeout duration                IO idle timeout (default 5m0s)
+      --transfers int                   Number of file transfers to run in parallel. (default 4)
+  -u, --update                          Skip files that are newer on the destination.
+  -v, --verbose                         Print lots more stuff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;see-also&#34;&gt;SEE ALSO&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone/&#34;&gt;rclone&lt;/a&gt;    - Sync files and directories to and from local and remote object stores - v1.33-DEV&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&#34;auto-generated-by-spf13-cobra-on-24-aug-2016&#34;&gt;Auto generated by spf13/cobra on 24-Aug-2016&lt;/h6&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>rclone dedupe</title>
+      <link>/digipowers/rclone/docs/public/commands/rclone_dedupe/</link>
+      <pubDate>Wed, 24 Aug 2016 23:47:55 &#43;0100</pubDate>
+      <author>Enthusiastic Hugo User</author>
+      <guid>/digipowers/rclone/docs/public/commands/rclone_dedupe/</guid>
+      <description>
+
+&lt;h2 id=&#34;rclone-dedupe&#34;&gt;rclone dedupe&lt;/h2&gt;
+
+&lt;p&gt;Interactively find duplicate files delete/rename them.&lt;/p&gt;
+
+&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;
+
+&lt;p&gt;By default &lt;code&gt;dedup&lt;/code&gt; interactively finds duplicate files and offers to
+delete all but one or rename them to be different. Only useful with
+Google Drive which can have duplicate file names.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;dedupe&lt;/code&gt; command will delete all but one of any identical (same
+md5sum) files it finds without confirmation.  This means that for most
+duplicated files the &lt;code&gt;dedupe&lt;/code&gt; command will not be interactive.  You
+can use &lt;code&gt;--dry-run&lt;/code&gt; to see what would happen without doing anything.&lt;/p&gt;
+
+&lt;p&gt;Here is an example run.&lt;/p&gt;
+
+&lt;p&gt;Before - with duplicates&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ rclone lsl drive:dupes
+  6048320 2016-03-05 16:23:16.798000000 one.txt
+  6048320 2016-03-05 16:23:11.775000000 one.txt
+   564374 2016-03-05 16:23:06.731000000 one.txt
+  6048320 2016-03-05 16:18:26.092000000 one.txt
+  6048320 2016-03-05 16:22:46.185000000 two.txt
+  1744073 2016-03-05 16:22:38.104000000 two.txt
+   564374 2016-03-05 16:22:52.118000000 two.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now the &lt;code&gt;dedupe&lt;/code&gt; session&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ rclone dedupe drive:dupes
+2016/03/05 16:24:37 Google drive root &#39;dupes&#39;: Looking for duplicates using interactive mode.
+one.txt: Found 4 duplicates - deleting identical copies
+one.txt: Deleting 2/3 identical duplicates (md5sum &amp;quot;1eedaa9fe86fd4b8632e2ac549403b36&amp;quot;)
+one.txt: 2 duplicates remain
+  1:      6048320 bytes, 2016-03-05 16:23:16.798000000, md5sum 1eedaa9fe86fd4b8632e2ac549403b36
+  2:       564374 bytes, 2016-03-05 16:23:06.731000000, md5sum 7594e7dc9fc28f727c42ee3e0749de81
+s) Skip and do nothing
+k) Keep just one (choose which in next step)
+r) Rename all to be different (by changing file.jpg to file-1.jpg)
+s/k/r&amp;gt; k
+Enter the number of the file to keep&amp;gt; 1
+one.txt: Deleted 1 extra copies
+two.txt: Found 3 duplicates - deleting identical copies
+two.txt: 3 duplicates remain
+  1:       564374 bytes, 2016-03-05 16:22:52.118000000, md5sum 7594e7dc9fc28f727c42ee3e0749de81
+  2:      6048320 bytes, 2016-03-05 16:22:46.185000000, md5sum 1eedaa9fe86fd4b8632e2ac549403b36
+  3:      1744073 bytes, 2016-03-05 16:22:38.104000000, md5sum 851957f7fb6f0bc4ce76be966d336802
+s) Skip and do nothing
+k) Keep just one (choose which in next step)
+r) Rename all to be different (by changing file.jpg to file-1.jpg)
+s/k/r&amp;gt; r
+two-1.txt: renamed from: two.txt
+two-2.txt: renamed from: two.txt
+two-3.txt: renamed from: two.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The result being&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ rclone lsl drive:dupes
+  6048320 2016-03-05 16:23:16.798000000 one.txt
+   564374 2016-03-05 16:22:52.118000000 two-1.txt
+  6048320 2016-03-05 16:22:46.185000000 two-2.txt
+  1744073 2016-03-05 16:22:38.104000000 two-3.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dedupe can be run non interactively using the &lt;code&gt;--dedupe-mode&lt;/code&gt; flag or by using an extra parameter with the same value&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--dedupe-mode interactive&lt;/code&gt; - interactive as above.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--dedupe-mode skip&lt;/code&gt; - removes identical files then skips anything left.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--dedupe-mode first&lt;/code&gt; - removes identical files then keeps the first one.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--dedupe-mode newest&lt;/code&gt; - removes identical files then keeps the newest one.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--dedupe-mode oldest&lt;/code&gt; - removes identical files then keeps the oldest one.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--dedupe-mode rename&lt;/code&gt; - removes identical files then renames the rest to be different.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For example to rename all the identically named photos in your Google Photos directory, do&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone dedupe --dedupe-mode rename &amp;quot;drive:Google Photos&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone dedupe rename &amp;quot;drive:Google Photos&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone dedupe [mode] remote:path
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;options&#34;&gt;Options&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;      --dedupe-mode string   Dedupe mode interactive|skip|first|newest|oldest|rename.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;options-inherited-from-parent-commands&#34;&gt;Options inherited from parent commands&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;      --acd-templink-threshold int      Files &amp;gt;= this size will be downloaded via their tempLink.
+      --acd-upload-wait-time duration   Time to wait after a failed complete upload to see if it appears. (default 2m0s)
+      --ask-password                    Allow prompt for password for encrypted configuration. (default true)
+      --b2-chunk-size int               Upload chunk size. Must fit in memory.
+      --b2-test-mode string             A flag string for X-Bz-Test-Mode header.
+      --b2-upload-cutoff int            Cutoff for switching to chunked upload
+      --b2-versions                     Include old versions in directory listings.
+      --bwlimit int                     Bandwidth limit in kBytes/s, or use suffix b|k|M|G
+      --checkers int                    Number of checkers to run in parallel. (default 8)
+  -c, --checksum                        Skip based on checksum &amp;amp; size, not mod-time &amp;amp; size
+      --config string                   Config file. (default &amp;quot;/home/ncw/.rclone.conf&amp;quot;)
+      --contimeout duration             Connect timeout (default 1m0s)
+      --cpuprofile string               Write cpu profile to file
+      --delete-after                    When synchronizing, delete files on destination after transfering
+      --delete-before                   When synchronizing, delete files on destination before transfering
+      --delete-during                   When synchronizing, delete files during transfer (default)
+      --delete-excluded                 Delete files on dest excluded from sync
+      --drive-auth-owner-only           Only consider files owned by the authenticated user. Requires drive-full-list.
+      --drive-chunk-size int            Upload chunk size. Must a power of 2 &amp;gt;= 256k.
+      --drive-formats string            Comma separated list of preferred formats for downloading Google docs. (default &amp;quot;docx,xlsx,pptx,svg&amp;quot;)
+      --drive-full-list                 Use a full listing for directory list. More data but usually quicker. (obsolete)
+      --drive-upload-cutoff int         Cutoff for switching to chunked upload
+      --drive-use-trash                 Send files to the trash instead of deleting permanently.
+      --dropbox-chunk-size int          Upload chunk size. Max 150M.
+  -n, --dry-run                         Do a trial run with no permanent changes
+      --dump-bodies                     Dump HTTP headers and bodies - may contain sensitive info
+      --dump-filters                    Dump the filters to the output
+      --dump-headers                    Dump HTTP headers - may contain sensitive info
+      --exclude string                  Exclude files matching pattern
+      --exclude-from string             Read exclude patterns from file
+      --files-from string               Read list of source-file names from file
+  -f, --filter string                   Add a file-filtering rule
+      --filter-from string              Read filtering patterns from a file
+      --ignore-existing                 Skip all files that exist on destination
+      --ignore-size                     Ignore size when skipping use mod-time or checksum.
+  -I, --ignore-times                    Don&#39;t skip files that match size and time - transfer all files
+      --include string                  Include files matching pattern
+      --include-from string             Read include patterns from file
+      --log-file string                 Log everything to this file
+      --low-level-retries int           Number of low level retries to do. (default 10)
+      --max-age string                  Don&#39;t transfer any file older than this in s or suffix ms|s|m|h|d|w|M|y
+      --max-depth int                   If set limits the recursion depth to this. (default -1)
+      --max-size int                    Don&#39;t transfer any file larger than this in k or suffix b|k|M|G
+      --memprofile string               Write memory profile to file
+      --min-age string                  Don&#39;t transfer any file younger than this in s or suffix ms|s|m|h|d|w|M|y
+      --min-size int                    Don&#39;t transfer any file smaller than this in k or suffix b|k|M|G
+      --modify-window duration          Max time diff to be considered the same (default 1ns)
+      --no-check-certificate            Do not verify the server SSL certificate. Insecure.
+      --no-gzip-encoding                Don&#39;t set Accept-Encoding: gzip.
+      --no-traverse                     Don&#39;t traverse destination file system on copy.
+      --no-update-modtime               Don&#39;t update destination mod-time if files identical.
+      --onedrive-chunk-size int         Above this size files will be chunked - must be multiple of 320k.
+      --onedrive-upload-cutoff int      Cutoff for switching to chunked upload - must be &amp;lt;= 100MB
+  -q, --quiet                           Print as little stuff as possible
+      --retries int                     Retry operations this many times if they fail (default 3)
+      --size-only                       Skip based on size only, not mod-time or checksum
+      --stats duration                  Interval to print stats (0 to disable) (default 1m0s)
+      --swift-chunk-size int            Above this size files will be chunked into a _segments container.
+      --timeout duration                IO idle timeout (default 5m0s)
+      --transfers int                   Number of file transfers to run in parallel. (default 4)
+  -u, --update                          Skip files that are newer on the destination.
+  -v, --verbose                         Print lots more stuff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;see-also&#34;&gt;SEE ALSO&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone/&#34;&gt;rclone&lt;/a&gt;    - Sync files and directories to and from local and remote object stores - v1.33-DEV&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&#34;auto-generated-by-spf13-cobra-on-24-aug-2016&#34;&gt;Auto generated by spf13/cobra on 24-Aug-2016&lt;/h6&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>rclone delete</title>
+      <link>/digipowers/rclone/docs/public/commands/rclone_delete/</link>
+      <pubDate>Wed, 24 Aug 2016 23:47:55 &#43;0100</pubDate>
+      <author>Enthusiastic Hugo User</author>
+      <guid>/digipowers/rclone/docs/public/commands/rclone_delete/</guid>
+      <description>
+
+&lt;h2 id=&#34;rclone-delete&#34;&gt;rclone delete&lt;/h2&gt;
+
+&lt;p&gt;Remove the contents of path.&lt;/p&gt;
+
+&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;
+
+&lt;p&gt;Remove the contents of path.  Unlike &lt;code&gt;purge&lt;/code&gt; it obeys include/exclude
+filters so can be used to selectively delete files.&lt;/p&gt;
+
+&lt;p&gt;Eg delete all files bigger than 100MBytes&lt;/p&gt;
+
+&lt;p&gt;Check what would be deleted first (use either)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone --min-size 100M lsl remote:path
+rclone --dry-run --min-size 100M delete remote:path
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then delete&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone --min-size 100M delete remote:path
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That reads &amp;ldquo;delete everything with a minimum size of 100 MB&amp;rdquo;, hence
+delete all files bigger than 100MBytes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone delete remote:path
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;options-inherited-from-parent-commands&#34;&gt;Options inherited from parent commands&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;      --acd-templink-threshold int      Files &amp;gt;= this size will be downloaded via their tempLink.
+      --acd-upload-wait-time duration   Time to wait after a failed complete upload to see if it appears. (default 2m0s)
+      --ask-password                    Allow prompt for password for encrypted configuration. (default true)
+      --b2-chunk-size int               Upload chunk size. Must fit in memory.
+      --b2-test-mode string             A flag string for X-Bz-Test-Mode header.
+      --b2-upload-cutoff int            Cutoff for switching to chunked upload
+      --b2-versions                     Include old versions in directory listings.
+      --bwlimit int                     Bandwidth limit in kBytes/s, or use suffix b|k|M|G
+      --checkers int                    Number of checkers to run in parallel. (default 8)
+  -c, --checksum                        Skip based on checksum &amp;amp; size, not mod-time &amp;amp; size
+      --config string                   Config file. (default &amp;quot;/home/ncw/.rclone.conf&amp;quot;)
+      --contimeout duration             Connect timeout (default 1m0s)
+      --cpuprofile string               Write cpu profile to file
+      --delete-after                    When synchronizing, delete files on destination after transfering
+      --delete-before                   When synchronizing, delete files on destination before transfering
+      --delete-during                   When synchronizing, delete files during transfer (default)
+      --delete-excluded                 Delete files on dest excluded from sync
+      --drive-auth-owner-only           Only consider files owned by the authenticated user. Requires drive-full-list.
+      --drive-chunk-size int            Upload chunk size. Must a power of 2 &amp;gt;= 256k.
+      --drive-formats string            Comma separated list of preferred formats for downloading Google docs. (default &amp;quot;docx,xlsx,pptx,svg&amp;quot;)
+      --drive-full-list                 Use a full listing for directory list. More data but usually quicker. (obsolete)
+      --drive-upload-cutoff int         Cutoff for switching to chunked upload
+      --drive-use-trash                 Send files to the trash instead of deleting permanently.
+      --dropbox-chunk-size int          Upload chunk size. Max 150M.
+  -n, --dry-run                         Do a trial run with no permanent changes
+      --dump-bodies                     Dump HTTP headers and bodies - may contain sensitive info
+      --dump-filters                    Dump the filters to the output
+      --dump-headers                    Dump HTTP headers - may contain sensitive info
+      --exclude string                  Exclude files matching pattern
+      --exclude-from string             Read exclude patterns from file
+      --files-from string               Read list of source-file names from file
+  -f, --filter string                   Add a file-filtering rule
+      --filter-from string              Read filtering patterns from a file
+      --ignore-existing                 Skip all files that exist on destination
+      --ignore-size                     Ignore size when skipping use mod-time or checksum.
+  -I, --ignore-times                    Don&#39;t skip files that match size and time - transfer all files
+      --include string                  Include files matching pattern
+      --include-from string             Read include patterns from file
+      --log-file string                 Log everything to this file
+      --low-level-retries int           Number of low level retries to do. (default 10)
+      --max-age string                  Don&#39;t transfer any file older than this in s or suffix ms|s|m|h|d|w|M|y
+      --max-depth int                   If set limits the recursion depth to this. (default -1)
+      --max-size int                    Don&#39;t transfer any file larger than this in k or suffix b|k|M|G
+      --memprofile string               Write memory profile to file
+      --min-age string                  Don&#39;t transfer any file younger than this in s or suffix ms|s|m|h|d|w|M|y
+      --min-size int                    Don&#39;t transfer any file smaller than this in k or suffix b|k|M|G
+      --modify-window duration          Max time diff to be considered the same (default 1ns)
+      --no-check-certificate            Do not verify the server SSL certificate. Insecure.
+      --no-gzip-encoding                Don&#39;t set Accept-Encoding: gzip.
+      --no-traverse                     Don&#39;t traverse destination file system on copy.
+      --no-update-modtime               Don&#39;t update destination mod-time if files identical.
+      --onedrive-chunk-size int         Above this size files will be chunked - must be multiple of 320k.
+      --onedrive-upload-cutoff int      Cutoff for switching to chunked upload - must be &amp;lt;= 100MB
+  -q, --quiet                           Print as little stuff as possible
+      --retries int                     Retry operations this many times if they fail (default 3)
+      --size-only                       Skip based on size only, not mod-time or checksum
+      --stats duration                  Interval to print stats (0 to disable) (default 1m0s)
+      --swift-chunk-size int            Above this size files will be chunked into a _segments container.
+      --timeout duration                IO idle timeout (default 5m0s)
+      --transfers int                   Number of file transfers to run in parallel. (default 4)
+  -u, --update                          Skip files that are newer on the destination.
+  -v, --verbose                         Print lots more stuff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;see-also&#34;&gt;SEE ALSO&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone/&#34;&gt;rclone&lt;/a&gt;    - Sync files and directories to and from local and remote object stores - v1.33-DEV&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&#34;auto-generated-by-spf13-cobra-on-24-aug-2016&#34;&gt;Auto generated by spf13/cobra on 24-Aug-2016&lt;/h6&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>rclone genautocomplete</title>
+      <link>/digipowers/rclone/docs/public/commands/rclone_genautocomplete/</link>
+      <pubDate>Wed, 24 Aug 2016 23:47:55 &#43;0100</pubDate>
+      <author>Enthusiastic Hugo User</author>
+      <guid>/digipowers/rclone/docs/public/commands/rclone_genautocomplete/</guid>
+      <description>
+
+&lt;h2 id=&#34;rclone-genautocomplete&#34;&gt;rclone genautocomplete&lt;/h2&gt;
+
+&lt;p&gt;Output bash completion script for rclone.&lt;/p&gt;
+
+&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;
+
+&lt;p&gt;Generates a bash shell autocompletion script for rclone.&lt;/p&gt;
+
+&lt;p&gt;This writes to /etc/bash_completion.d/rclone by default so will
+probably need to be run with sudo or as root, eg&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo rclone genautocomplete
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Logout and login again to use the autocompletion scripts, or source
+them directly&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;. /etc/bash_completion
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you supply a command line argument the script will be written
+there.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone genautocomplete [output_file]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;options-inherited-from-parent-commands&#34;&gt;Options inherited from parent commands&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;      --acd-templink-threshold int      Files &amp;gt;= this size will be downloaded via their tempLink.
+      --acd-upload-wait-time duration   Time to wait after a failed complete upload to see if it appears. (default 2m0s)
+      --ask-password                    Allow prompt for password for encrypted configuration. (default true)
+      --b2-chunk-size int               Upload chunk size. Must fit in memory.
+      --b2-test-mode string             A flag string for X-Bz-Test-Mode header.
+      --b2-upload-cutoff int            Cutoff for switching to chunked upload
+      --b2-versions                     Include old versions in directory listings.
+      --bwlimit int                     Bandwidth limit in kBytes/s, or use suffix b|k|M|G
+      --checkers int                    Number of checkers to run in parallel. (default 8)
+  -c, --checksum                        Skip based on checksum &amp;amp; size, not mod-time &amp;amp; size
+      --config string                   Config file. (default &amp;quot;/home/ncw/.rclone.conf&amp;quot;)
+      --contimeout duration             Connect timeout (default 1m0s)
+      --cpuprofile string               Write cpu profile to file
+      --delete-after                    When synchronizing, delete files on destination after transfering
+      --delete-before                   When synchronizing, delete files on destination before transfering
+      --delete-during                   When synchronizing, delete files during transfer (default)
+      --delete-excluded                 Delete files on dest excluded from sync
+      --drive-auth-owner-only           Only consider files owned by the authenticated user. Requires drive-full-list.
+      --drive-chunk-size int            Upload chunk size. Must a power of 2 &amp;gt;= 256k.
+      --drive-formats string            Comma separated list of preferred formats for downloading Google docs. (default &amp;quot;docx,xlsx,pptx,svg&amp;quot;)
+      --drive-full-list                 Use a full listing for directory list. More data but usually quicker. (obsolete)
+      --drive-upload-cutoff int         Cutoff for switching to chunked upload
+      --drive-use-trash                 Send files to the trash instead of deleting permanently.
+      --dropbox-chunk-size int          Upload chunk size. Max 150M.
+  -n, --dry-run                         Do a trial run with no permanent changes
+      --dump-bodies                     Dump HTTP headers and bodies - may contain sensitive info
+      --dump-filters                    Dump the filters to the output
+      --dump-headers                    Dump HTTP headers - may contain sensitive info
+      --exclude string                  Exclude files matching pattern
+      --exclude-from string             Read exclude patterns from file
+      --files-from string               Read list of source-file names from file
+  -f, --filter string                   Add a file-filtering rule
+      --filter-from string              Read filtering patterns from a file
+      --ignore-existing                 Skip all files that exist on destination
+      --ignore-size                     Ignore size when skipping use mod-time or checksum.
+  -I, --ignore-times                    Don&#39;t skip files that match size and time - transfer all files
+      --include string                  Include files matching pattern
+      --include-from string             Read include patterns from file
+      --log-file string                 Log everything to this file
+      --low-level-retries int           Number of low level retries to do. (default 10)
+      --max-age string                  Don&#39;t transfer any file older than this in s or suffix ms|s|m|h|d|w|M|y
+      --max-depth int                   If set limits the recursion depth to this. (default -1)
+      --max-size int                    Don&#39;t transfer any file larger than this in k or suffix b|k|M|G
+      --memprofile string               Write memory profile to file
+      --min-age string                  Don&#39;t transfer any file younger than this in s or suffix ms|s|m|h|d|w|M|y
+      --min-size int                    Don&#39;t transfer any file smaller than this in k or suffix b|k|M|G
+      --modify-window duration          Max time diff to be considered the same (default 1ns)
+      --no-check-certificate            Do not verify the server SSL certificate. Insecure.
+      --no-gzip-encoding                Don&#39;t set Accept-Encoding: gzip.
+      --no-traverse                     Don&#39;t traverse destination file system on copy.
+      --no-update-modtime               Don&#39;t update destination mod-time if files identical.
+      --onedrive-chunk-size int         Above this size files will be chunked - must be multiple of 320k.
+      --onedrive-upload-cutoff int      Cutoff for switching to chunked upload - must be &amp;lt;= 100MB
+  -q, --quiet                           Print as little stuff as possible
+      --retries int                     Retry operations this many times if they fail (default 3)
+      --size-only                       Skip based on size only, not mod-time or checksum
+      --stats duration                  Interval to print stats (0 to disable) (default 1m0s)
+      --swift-chunk-size int            Above this size files will be chunked into a _segments container.
+      --timeout duration                IO idle timeout (default 5m0s)
+      --transfers int                   Number of file transfers to run in parallel. (default 4)
+  -u, --update                          Skip files that are newer on the destination.
+  -v, --verbose                         Print lots more stuff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;see-also&#34;&gt;SEE ALSO&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone/&#34;&gt;rclone&lt;/a&gt;    - Sync files and directories to and from local and remote object stores - v1.33-DEV&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&#34;auto-generated-by-spf13-cobra-on-24-aug-2016&#34;&gt;Auto generated by spf13/cobra on 24-Aug-2016&lt;/h6&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>rclone gendocs</title>
+      <link>/digipowers/rclone/docs/public/commands/rclone_gendocs/</link>
+      <pubDate>Wed, 24 Aug 2016 23:47:55 &#43;0100</pubDate>
+      <author>Enthusiastic Hugo User</author>
+      <guid>/digipowers/rclone/docs/public/commands/rclone_gendocs/</guid>
+      <description>
+
+&lt;h2 id=&#34;rclone-gendocs&#34;&gt;rclone gendocs&lt;/h2&gt;
+
+&lt;p&gt;Output markdown docs for rclone to the directory supplied.&lt;/p&gt;
+
+&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;
+
+&lt;p&gt;This produces markdown docs for the rclone commands to the directory
+supplied.  These are in a format suitable for hugo to render into the
+rclone.org website.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone gendocs output_directory
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;options-inherited-from-parent-commands&#34;&gt;Options inherited from parent commands&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;      --acd-templink-threshold int      Files &amp;gt;= this size will be downloaded via their tempLink.
+      --acd-upload-wait-time duration   Time to wait after a failed complete upload to see if it appears. (default 2m0s)
+      --ask-password                    Allow prompt for password for encrypted configuration. (default true)
+      --b2-chunk-size int               Upload chunk size. Must fit in memory.
+      --b2-test-mode string             A flag string for X-Bz-Test-Mode header.
+      --b2-upload-cutoff int            Cutoff for switching to chunked upload
+      --b2-versions                     Include old versions in directory listings.
+      --bwlimit int                     Bandwidth limit in kBytes/s, or use suffix b|k|M|G
+      --checkers int                    Number of checkers to run in parallel. (default 8)
+  -c, --checksum                        Skip based on checksum &amp;amp; size, not mod-time &amp;amp; size
+      --config string                   Config file. (default &amp;quot;/home/ncw/.rclone.conf&amp;quot;)
+      --contimeout duration             Connect timeout (default 1m0s)
+      --cpuprofile string               Write cpu profile to file
+      --delete-after                    When synchronizing, delete files on destination after transfering
+      --delete-before                   When synchronizing, delete files on destination before transfering
+      --delete-during                   When synchronizing, delete files during transfer (default)
+      --delete-excluded                 Delete files on dest excluded from sync
+      --drive-auth-owner-only           Only consider files owned by the authenticated user. Requires drive-full-list.
+      --drive-chunk-size int            Upload chunk size. Must a power of 2 &amp;gt;= 256k.
+      --drive-formats string            Comma separated list of preferred formats for downloading Google docs. (default &amp;quot;docx,xlsx,pptx,svg&amp;quot;)
+      --drive-full-list                 Use a full listing for directory list. More data but usually quicker. (obsolete)
+      --drive-upload-cutoff int         Cutoff for switching to chunked upload
+      --drive-use-trash                 Send files to the trash instead of deleting permanently.
+      --dropbox-chunk-size int          Upload chunk size. Max 150M.
+  -n, --dry-run                         Do a trial run with no permanent changes
+      --dump-bodies                     Dump HTTP headers and bodies - may contain sensitive info
+      --dump-filters                    Dump the filters to the output
+      --dump-headers                    Dump HTTP headers - may contain sensitive info
+      --exclude string                  Exclude files matching pattern
+      --exclude-from string             Read exclude patterns from file
+      --files-from string               Read list of source-file names from file
+  -f, --filter string                   Add a file-filtering rule
+      --filter-from string              Read filtering patterns from a file
+      --ignore-existing                 Skip all files that exist on destination
+      --ignore-size                     Ignore size when skipping use mod-time or checksum.
+  -I, --ignore-times                    Don&#39;t skip files that match size and time - transfer all files
+      --include string                  Include files matching pattern
+      --include-from string             Read include patterns from file
+      --log-file string                 Log everything to this file
+      --low-level-retries int           Number of low level retries to do. (default 10)
+      --max-age string                  Don&#39;t transfer any file older than this in s or suffix ms|s|m|h|d|w|M|y
+      --max-depth int                   If set limits the recursion depth to this. (default -1)
+      --max-size int                    Don&#39;t transfer any file larger than this in k or suffix b|k|M|G
+      --memprofile string               Write memory profile to file
+      --min-age string                  Don&#39;t transfer any file younger than this in s or suffix ms|s|m|h|d|w|M|y
+      --min-size int                    Don&#39;t transfer any file smaller than this in k or suffix b|k|M|G
+      --modify-window duration          Max time diff to be considered the same (default 1ns)
+      --no-check-certificate            Do not verify the server SSL certificate. Insecure.
+      --no-gzip-encoding                Don&#39;t set Accept-Encoding: gzip.
+      --no-traverse                     Don&#39;t traverse destination file system on copy.
+      --no-update-modtime               Don&#39;t update destination mod-time if files identical.
+      --onedrive-chunk-size int         Above this size files will be chunked - must be multiple of 320k.
+      --onedrive-upload-cutoff int      Cutoff for switching to chunked upload - must be &amp;lt;= 100MB
+  -q, --quiet                           Print as little stuff as possible
+      --retries int                     Retry operations this many times if they fail (default 3)
+      --size-only                       Skip based on size only, not mod-time or checksum
+      --stats duration                  Interval to print stats (0 to disable) (default 1m0s)
+      --swift-chunk-size int            Above this size files will be chunked into a _segments container.
+      --timeout duration                IO idle timeout (default 5m0s)
+      --transfers int                   Number of file transfers to run in parallel. (default 4)
+  -u, --update                          Skip files that are newer on the destination.
+  -v, --verbose                         Print lots more stuff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;see-also&#34;&gt;SEE ALSO&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone/&#34;&gt;rclone&lt;/a&gt;    - Sync files and directories to and from local and remote object stores - v1.33-DEV&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&#34;auto-generated-by-spf13-cobra-on-24-aug-2016&#34;&gt;Auto generated by spf13/cobra on 24-Aug-2016&lt;/h6&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>rclone ls</title>
+      <link>/digipowers/rclone/docs/public/commands/rclone_ls/</link>
+      <pubDate>Wed, 24 Aug 2016 23:47:55 &#43;0100</pubDate>
+      <author>Enthusiastic Hugo User</author>
+      <guid>/digipowers/rclone/docs/public/commands/rclone_ls/</guid>
+      <description>
+
+&lt;h2 id=&#34;rclone-ls&#34;&gt;rclone ls&lt;/h2&gt;
+
+&lt;p&gt;List all the objects in the the path with size and path.&lt;/p&gt;
+
+&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;
+
+&lt;p&gt;List all the objects in the the path with size and path.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone ls remote:path
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;options-inherited-from-parent-commands&#34;&gt;Options inherited from parent commands&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;      --acd-templink-threshold int      Files &amp;gt;= this size will be downloaded via their tempLink.
+      --acd-upload-wait-time duration   Time to wait after a failed complete upload to see if it appears. (default 2m0s)
+      --ask-password                    Allow prompt for password for encrypted configuration. (default true)
+      --b2-chunk-size int               Upload chunk size. Must fit in memory.
+      --b2-test-mode string             A flag string for X-Bz-Test-Mode header.
+      --b2-upload-cutoff int            Cutoff for switching to chunked upload
+      --b2-versions                     Include old versions in directory listings.
+      --bwlimit int                     Bandwidth limit in kBytes/s, or use suffix b|k|M|G
+      --checkers int                    Number of checkers to run in parallel. (default 8)
+  -c, --checksum                        Skip based on checksum &amp;amp; size, not mod-time &amp;amp; size
+      --config string                   Config file. (default &amp;quot;/home/ncw/.rclone.conf&amp;quot;)
+      --contimeout duration             Connect timeout (default 1m0s)
+      --cpuprofile string               Write cpu profile to file
+      --delete-after                    When synchronizing, delete files on destination after transfering
+      --delete-before                   When synchronizing, delete files on destination before transfering
+      --delete-during                   When synchronizing, delete files during transfer (default)
+      --delete-excluded                 Delete files on dest excluded from sync
+      --drive-auth-owner-only           Only consider files owned by the authenticated user. Requires drive-full-list.
+      --drive-chunk-size int            Upload chunk size. Must a power of 2 &amp;gt;= 256k.
+      --drive-formats string            Comma separated list of preferred formats for downloading Google docs. (default &amp;quot;docx,xlsx,pptx,svg&amp;quot;)
+      --drive-full-list                 Use a full listing for directory list. More data but usually quicker. (obsolete)
+      --drive-upload-cutoff int         Cutoff for switching to chunked upload
+      --drive-use-trash                 Send files to the trash instead of deleting permanently.
+      --dropbox-chunk-size int          Upload chunk size. Max 150M.
+  -n, --dry-run                         Do a trial run with no permanent changes
+      --dump-bodies                     Dump HTTP headers and bodies - may contain sensitive info
+      --dump-filters                    Dump the filters to the output
+      --dump-headers                    Dump HTTP headers - may contain sensitive info
+      --exclude string                  Exclude files matching pattern
+      --exclude-from string             Read exclude patterns from file
+      --files-from string               Read list of source-file names from file
+  -f, --filter string                   Add a file-filtering rule
+      --filter-from string              Read filtering patterns from a file
+      --ignore-existing                 Skip all files that exist on destination
+      --ignore-size                     Ignore size when skipping use mod-time or checksum.
+  -I, --ignore-times                    Don&#39;t skip files that match size and time - transfer all files
+      --include string                  Include files matching pattern
+      --include-from string             Read include patterns from file
+      --log-file string                 Log everything to this file
+      --low-level-retries int           Number of low level retries to do. (default 10)
+      --max-age string                  Don&#39;t transfer any file older than this in s or suffix ms|s|m|h|d|w|M|y
+      --max-depth int                   If set limits the recursion depth to this. (default -1)
+      --max-size int                    Don&#39;t transfer any file larger than this in k or suffix b|k|M|G
+      --memprofile string               Write memory profile to file
+      --min-age string                  Don&#39;t transfer any file younger than this in s or suffix ms|s|m|h|d|w|M|y
+      --min-size int                    Don&#39;t transfer any file smaller than this in k or suffix b|k|M|G
+      --modify-window duration          Max time diff to be considered the same (default 1ns)
+      --no-check-certificate            Do not verify the server SSL certificate. Insecure.
+      --no-gzip-encoding                Don&#39;t set Accept-Encoding: gzip.
+      --no-traverse                     Don&#39;t traverse destination file system on copy.
+      --no-update-modtime               Don&#39;t update destination mod-time if files identical.
+      --onedrive-chunk-size int         Above this size files will be chunked - must be multiple of 320k.
+      --onedrive-upload-cutoff int      Cutoff for switching to chunked upload - must be &amp;lt;= 100MB
+  -q, --quiet                           Print as little stuff as possible
+      --retries int                     Retry operations this many times if they fail (default 3)
+      --size-only                       Skip based on size only, not mod-time or checksum
+      --stats duration                  Interval to print stats (0 to disable) (default 1m0s)
+      --swift-chunk-size int            Above this size files will be chunked into a _segments container.
+      --timeout duration                IO idle timeout (default 5m0s)
+      --transfers int                   Number of file transfers to run in parallel. (default 4)
+  -u, --update                          Skip files that are newer on the destination.
+  -v, --verbose                         Print lots more stuff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;see-also&#34;&gt;SEE ALSO&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone/&#34;&gt;rclone&lt;/a&gt;    - Sync files and directories to and from local and remote object stores - v1.33-DEV&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&#34;auto-generated-by-spf13-cobra-on-24-aug-2016&#34;&gt;Auto generated by spf13/cobra on 24-Aug-2016&lt;/h6&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>rclone lsd</title>
+      <link>/digipowers/rclone/docs/public/commands/rclone_lsd/</link>
+      <pubDate>Wed, 24 Aug 2016 23:47:55 &#43;0100</pubDate>
+      <author>Enthusiastic Hugo User</author>
+      <guid>/digipowers/rclone/docs/public/commands/rclone_lsd/</guid>
+      <description>
+
+&lt;h2 id=&#34;rclone-lsd&#34;&gt;rclone lsd&lt;/h2&gt;
+
+&lt;p&gt;List all directories/containers/buckets in the the path.&lt;/p&gt;
+
+&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;
+
+&lt;p&gt;List all directories/containers/buckets in the the path.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone lsd remote:path
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;options-inherited-from-parent-commands&#34;&gt;Options inherited from parent commands&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;      --acd-templink-threshold int      Files &amp;gt;= this size will be downloaded via their tempLink.
+      --acd-upload-wait-time duration   Time to wait after a failed complete upload to see if it appears. (default 2m0s)
+      --ask-password                    Allow prompt for password for encrypted configuration. (default true)
+      --b2-chunk-size int               Upload chunk size. Must fit in memory.
+      --b2-test-mode string             A flag string for X-Bz-Test-Mode header.
+      --b2-upload-cutoff int            Cutoff for switching to chunked upload
+      --b2-versions                     Include old versions in directory listings.
+      --bwlimit int                     Bandwidth limit in kBytes/s, or use suffix b|k|M|G
+      --checkers int                    Number of checkers to run in parallel. (default 8)
+  -c, --checksum                        Skip based on checksum &amp;amp; size, not mod-time &amp;amp; size
+      --config string                   Config file. (default &amp;quot;/home/ncw/.rclone.conf&amp;quot;)
+      --contimeout duration             Connect timeout (default 1m0s)
+      --cpuprofile string               Write cpu profile to file
+      --delete-after                    When synchronizing, delete files on destination after transfering
+      --delete-before                   When synchronizing, delete files on destination before transfering
+      --delete-during                   When synchronizing, delete files during transfer (default)
+      --delete-excluded                 Delete files on dest excluded from sync
+      --drive-auth-owner-only           Only consider files owned by the authenticated user. Requires drive-full-list.
+      --drive-chunk-size int            Upload chunk size. Must a power of 2 &amp;gt;= 256k.
+      --drive-formats string            Comma separated list of preferred formats for downloading Google docs. (default &amp;quot;docx,xlsx,pptx,svg&amp;quot;)
+      --drive-full-list                 Use a full listing for directory list. More data but usually quicker. (obsolete)
+      --drive-upload-cutoff int         Cutoff for switching to chunked upload
+      --drive-use-trash                 Send files to the trash instead of deleting permanently.
+      --dropbox-chunk-size int          Upload chunk size. Max 150M.
+  -n, --dry-run                         Do a trial run with no permanent changes
+      --dump-bodies                     Dump HTTP headers and bodies - may contain sensitive info
+      --dump-filters                    Dump the filters to the output
+      --dump-headers                    Dump HTTP headers - may contain sensitive info
+      --exclude string                  Exclude files matching pattern
+      --exclude-from string             Read exclude patterns from file
+      --files-from string               Read list of source-file names from file
+  -f, --filter string                   Add a file-filtering rule
+      --filter-from string              Read filtering patterns from a file
+      --ignore-existing                 Skip all files that exist on destination
+      --ignore-size                     Ignore size when skipping use mod-time or checksum.
+  -I, --ignore-times                    Don&#39;t skip files that match size and time - transfer all files
+      --include string                  Include files matching pattern
+      --include-from string             Read include patterns from file
+      --log-file string                 Log everything to this file
+      --low-level-retries int           Number of low level retries to do. (default 10)
+      --max-age string                  Don&#39;t transfer any file older than this in s or suffix ms|s|m|h|d|w|M|y
+      --max-depth int                   If set limits the recursion depth to this. (default -1)
+      --max-size int                    Don&#39;t transfer any file larger than this in k or suffix b|k|M|G
+      --memprofile string               Write memory profile to file
+      --min-age string                  Don&#39;t transfer any file younger than this in s or suffix ms|s|m|h|d|w|M|y
+      --min-size int                    Don&#39;t transfer any file smaller than this in k or suffix b|k|M|G
+      --modify-window duration          Max time diff to be considered the same (default 1ns)
+      --no-check-certificate            Do not verify the server SSL certificate. Insecure.
+      --no-gzip-encoding                Don&#39;t set Accept-Encoding: gzip.
+      --no-traverse                     Don&#39;t traverse destination file system on copy.
+      --no-update-modtime               Don&#39;t update destination mod-time if files identical.
+      --onedrive-chunk-size int         Above this size files will be chunked - must be multiple of 320k.
+      --onedrive-upload-cutoff int      Cutoff for switching to chunked upload - must be &amp;lt;= 100MB
+  -q, --quiet                           Print as little stuff as possible
+      --retries int                     Retry operations this many times if they fail (default 3)
+      --size-only                       Skip based on size only, not mod-time or checksum
+      --stats duration                  Interval to print stats (0 to disable) (default 1m0s)
+      --swift-chunk-size int            Above this size files will be chunked into a _segments container.
+      --timeout duration                IO idle timeout (default 5m0s)
+      --transfers int                   Number of file transfers to run in parallel. (default 4)
+  -u, --update                          Skip files that are newer on the destination.
+  -v, --verbose                         Print lots more stuff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;see-also&#34;&gt;SEE ALSO&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone/&#34;&gt;rclone&lt;/a&gt;    - Sync files and directories to and from local and remote object stores - v1.33-DEV&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&#34;auto-generated-by-spf13-cobra-on-24-aug-2016&#34;&gt;Auto generated by spf13/cobra on 24-Aug-2016&lt;/h6&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>rclone lsl</title>
+      <link>/digipowers/rclone/docs/public/commands/rclone_lsl/</link>
+      <pubDate>Wed, 24 Aug 2016 23:47:55 &#43;0100</pubDate>
+      <author>Enthusiastic Hugo User</author>
+      <guid>/digipowers/rclone/docs/public/commands/rclone_lsl/</guid>
+      <description>
+
+&lt;h2 id=&#34;rclone-lsl&#34;&gt;rclone lsl&lt;/h2&gt;
+
+&lt;p&gt;List all the objects path with modification time, size and path.&lt;/p&gt;
+
+&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;
+
+&lt;p&gt;List all the objects path with modification time, size and path.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone lsl remote:path
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;options-inherited-from-parent-commands&#34;&gt;Options inherited from parent commands&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;      --acd-templink-threshold int      Files &amp;gt;= this size will be downloaded via their tempLink.
+      --acd-upload-wait-time duration   Time to wait after a failed complete upload to see if it appears. (default 2m0s)
+      --ask-password                    Allow prompt for password for encrypted configuration. (default true)
+      --b2-chunk-size int               Upload chunk size. Must fit in memory.
+      --b2-test-mode string             A flag string for X-Bz-Test-Mode header.
+      --b2-upload-cutoff int            Cutoff for switching to chunked upload
+      --b2-versions                     Include old versions in directory listings.
+      --bwlimit int                     Bandwidth limit in kBytes/s, or use suffix b|k|M|G
+      --checkers int                    Number of checkers to run in parallel. (default 8)
+  -c, --checksum                        Skip based on checksum &amp;amp; size, not mod-time &amp;amp; size
+      --config string                   Config file. (default &amp;quot;/home/ncw/.rclone.conf&amp;quot;)
+      --contimeout duration             Connect timeout (default 1m0s)
+      --cpuprofile string               Write cpu profile to file
+      --delete-after                    When synchronizing, delete files on destination after transfering
+      --delete-before                   When synchronizing, delete files on destination before transfering
+      --delete-during                   When synchronizing, delete files during transfer (default)
+      --delete-excluded                 Delete files on dest excluded from sync
+      --drive-auth-owner-only           Only consider files owned by the authenticated user. Requires drive-full-list.
+      --drive-chunk-size int            Upload chunk size. Must a power of 2 &amp;gt;= 256k.
+      --drive-formats string            Comma separated list of preferred formats for downloading Google docs. (default &amp;quot;docx,xlsx,pptx,svg&amp;quot;)
+      --drive-full-list                 Use a full listing for directory list. More data but usually quicker. (obsolete)
+      --drive-upload-cutoff int         Cutoff for switching to chunked upload
+      --drive-use-trash                 Send files to the trash instead of deleting permanently.
+      --dropbox-chunk-size int          Upload chunk size. Max 150M.
+  -n, --dry-run                         Do a trial run with no permanent changes
+      --dump-bodies                     Dump HTTP headers and bodies - may contain sensitive info
+      --dump-filters                    Dump the filters to the output
+      --dump-headers                    Dump HTTP headers - may contain sensitive info
+      --exclude string                  Exclude files matching pattern
+      --exclude-from string             Read exclude patterns from file
+      --files-from string               Read list of source-file names from file
+  -f, --filter string                   Add a file-filtering rule
+      --filter-from string              Read filtering patterns from a file
+      --ignore-existing                 Skip all files that exist on destination
+      --ignore-size                     Ignore size when skipping use mod-time or checksum.
+  -I, --ignore-times                    Don&#39;t skip files that match size and time - transfer all files
+      --include string                  Include files matching pattern
+      --include-from string             Read include patterns from file
+      --log-file string                 Log everything to this file
+      --low-level-retries int           Number of low level retries to do. (default 10)
+      --max-age string                  Don&#39;t transfer any file older than this in s or suffix ms|s|m|h|d|w|M|y
+      --max-depth int                   If set limits the recursion depth to this. (default -1)
+      --max-size int                    Don&#39;t transfer any file larger than this in k or suffix b|k|M|G
+      --memprofile string               Write memory profile to file
+      --min-age string                  Don&#39;t transfer any file younger than this in s or suffix ms|s|m|h|d|w|M|y
+      --min-size int                    Don&#39;t transfer any file smaller than this in k or suffix b|k|M|G
+      --modify-window duration          Max time diff to be considered the same (default 1ns)
+      --no-check-certificate            Do not verify the server SSL certificate. Insecure.
+      --no-gzip-encoding                Don&#39;t set Accept-Encoding: gzip.
+      --no-traverse                     Don&#39;t traverse destination file system on copy.
+      --no-update-modtime               Don&#39;t update destination mod-time if files identical.
+      --onedrive-chunk-size int         Above this size files will be chunked - must be multiple of 320k.
+      --onedrive-upload-cutoff int      Cutoff for switching to chunked upload - must be &amp;lt;= 100MB
+  -q, --quiet                           Print as little stuff as possible
+      --retries int                     Retry operations this many times if they fail (default 3)
+      --size-only                       Skip based on size only, not mod-time or checksum
+      --stats duration                  Interval to print stats (0 to disable) (default 1m0s)
+      --swift-chunk-size int            Above this size files will be chunked into a _segments container.
+      --timeout duration                IO idle timeout (default 5m0s)
+      --transfers int                   Number of file transfers to run in parallel. (default 4)
+  -u, --update                          Skip files that are newer on the destination.
+  -v, --verbose                         Print lots more stuff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;see-also&#34;&gt;SEE ALSO&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone/&#34;&gt;rclone&lt;/a&gt;    - Sync files and directories to and from local and remote object stores - v1.33-DEV&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&#34;auto-generated-by-spf13-cobra-on-24-aug-2016&#34;&gt;Auto generated by spf13/cobra on 24-Aug-2016&lt;/h6&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>rclone md5sum</title>
+      <link>/digipowers/rclone/docs/public/commands/rclone_md5sum/</link>
+      <pubDate>Wed, 24 Aug 2016 23:47:55 &#43;0100</pubDate>
+      <author>Enthusiastic Hugo User</author>
+      <guid>/digipowers/rclone/docs/public/commands/rclone_md5sum/</guid>
+      <description>
+
+&lt;h2 id=&#34;rclone-md5sum&#34;&gt;rclone md5sum&lt;/h2&gt;
+
+&lt;p&gt;Produces an md5sum file for all the objects in the path.&lt;/p&gt;
+
+&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;
+
+&lt;p&gt;Produces an md5sum file for all the objects in the path.  This
+is in the same format as the standard md5sum tool produces.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rclone md5sum remote:path
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;options-inherited-from-parent-commands&#34;&gt;Options inherited from parent commands&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;      --acd-templink-threshold int      Files &amp;gt;= this size will be downloaded via their tempLink.
+      --acd-upload-wait-time duration   Time to wait after a failed complete upload to see if it appears. (default 2m0s)
+      --ask-password                    Allow prompt for password for encrypted configuration. (default true)
+      --b2-chunk-size int               Upload chunk size. Must fit in memory.
+      --b2-test-mode string             A flag string for X-Bz-Test-Mode header.
+      --b2-upload-cutoff int            Cutoff for switching to chunked upload
+      --b2-versions                     Include old versions in directory listings.
+      --bwlimit int                     Bandwidth limit in kBytes/s, or use suffix b|k|M|G
+      --checkers int                    Number of checkers to run in parallel. (default 8)
+  -c, --checksum                        Skip based on checksum &amp;amp; size, not mod-time &amp;amp; size
+      --config string                   Config file. (default &amp;quot;/home/ncw/.rclone.conf&amp;quot;)
+      --contimeout duration             Connect timeout (default 1m0s)
+      --cpuprofile string               Write cpu profile to file
+      --delete-after                    When synchronizing, delete files on destination after transfering
+      --delete-before                   When synchronizing, delete files on destination before transfering
+      --delete-during                   When synchronizing, delete files during transfer (default)
+      --delete-excluded                 Delete files on dest excluded from sync
+      --drive-auth-owner-only           Only consider files owned by the authenticated user. Requires drive-full-list.
+      --drive-chunk-size int            Upload chunk size. Must a power of 2 &amp;gt;= 256k.
+      --drive-formats string            Comma separated list of preferred formats for downloading Google docs. (default &amp;quot;docx,xlsx,pptx,svg&amp;quot;)
+      --drive-full-list                 Use a full listing for directory list. More data but usually quicker. (obsolete)
+      --drive-upload-cutoff int         Cutoff for switching to chunked upload
+      --drive-use-trash                 Send files to the trash instead of deleting permanently.
+      --dropbox-chunk-size int          Upload chunk size. Max 150M.
+  -n, --dry-run                         Do a trial run with no permanent changes
+      --dump-bodies                     Dump HTTP headers and bodies - may contain sensitive info
+      --dump-filters                    Dump the filters to the output
+      --dump-headers                    Dump HTTP headers - may contain sensitive info
+      --exclude string                  Exclude files matching pattern
+      --exclude-from string             Read exclude patterns from file
+      --files-from string               Read list of source-file names from file
+  -f, --filter string                   Add a file-filtering rule
+      --filter-from string              Read filtering patterns from a file
+      --ignore-existing                 Skip all files that exist on destination
+      --ignore-size                     Ignore size when skipping use mod-time or checksum.
+  -I, --ignore-times                    Don&#39;t skip files that match size and time - transfer all files
+      --include string                  Include files matching pattern
+      --include-from string             Read include patterns from file
+      --log-file string                 Log everything to this file
+      --low-level-retries int           Number of low level retries to do. (default 10)
+      --max-age string                  Don&#39;t transfer any file older than this in s or suffix ms|s|m|h|d|w|M|y
+      --max-depth int                   If set limits the recursion depth to this. (default -1)
+      --max-size int                    Don&#39;t transfer any file larger than this in k or suffix b|k|M|G
+      --memprofile string               Write memory profile to file
+      --min-age string                  Don&#39;t transfer any file younger than this in s or suffix ms|s|m|h|d|w|M|y
+      --min-size int                    Don&#39;t transfer any file smaller than this in k or suffix b|k|M|G
+      --modify-window duration          Max time diff to be considered the same (default 1ns)
+      --no-check-certificate            Do not verify the server SSL certificate. Insecure.
+      --no-gzip-encoding                Don&#39;t set Accept-Encoding: gzip.
+      --no-traverse                     Don&#39;t traverse destination file system on copy.
+      --no-update-modtime               Don&#39;t update destination mod-time if files identical.
+      --onedrive-chunk-size int         Above this size files will be chunked - must be multiple of 320k.
+      --onedrive-upload-cutoff int      Cutoff for switching to chunked upload - must be &amp;lt;= 100MB
+  -q, --quiet                           Print as little stuff as possible
+      --retries int                     Retry operations this many times if they fail (default 3)
+      --size-only                       Skip based on size only, not mod-time or checksum
+      --stats duration                  Interval to print stats (0 to disable) (default 1m0s)
+      --swift-chunk-size int            Above this size files will be chunked into a _segments container.
+      --timeout duration                IO idle timeout (default 5m0s)
+      --transfers int                   Number of file transfers to run in parallel. (default 4)
+  -u, --update                          Skip files that are newer on the destination.
+  -v, --verbose                         Print lots more stuff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;see-also&#34;&gt;SEE ALSO&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone/&#34;&gt;rclone&lt;/a&gt;    - Sync files and directories to and from local and remote object stores - v1.33-DEV&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id=&#34;auto-generated-by-spf13-cobra-on-24-aug-2016&#34;&gt;Auto generated by spf13/cobra on 24-Aug-2016&lt;/h6&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

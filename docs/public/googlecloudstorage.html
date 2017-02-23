@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rclone docs for Google Cloud Storage">
+    <meta name="author" content="Nick Craig-Wood">
+    <link rel="shortcut icon" type="image/png" href="/digipowers/rclone/docs/public/img/rclone-16x16.png"/>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-51081799-1', 'rclone.org');
+      ga('send', 'pageview');
+    </script>
+
+    <title>Google Cloud Storage</title>
+    <link rel="canonical" href="/digipowers/rclone/docs/public/digipowers/rclone/docs/public/googlecloudstorage.html">
+        <link href="/digipowers/rclone/docs/public/css/bootstrap.css" rel="stylesheet">
+    <link href="/digipowers/rclone/docs/public/css/font-awesome.css" rel="stylesheet">
+    <link href="/digipowers/rclone/docs/public/css/custom.css" rel="stylesheet">
+
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/digipowers/rclone/docs/public/digipowers/rclone/docs/public/"><i class="fa fa-home"></i> rclone - rsync for cloud storage</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="/digipowers/rclone/docs/public/downloads/"><i class="fa fa-cloud-download"></i> Downloads</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b> Docs</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/digipowers/rclone/docs/public/install/"><i class="fa fa-book"></i> Installation</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/docs/"><i class="fa fa-book"></i> Usage</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/filtering/"><i class="fa fa-book"></i> Filtering</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/changelog/"><i class="fa fa-book"></i> Changelog</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/bugs/"><i class="fa fa-book"></i> Bugs</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/faq/"><i class="fa fa-book"></i> FAQ</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/licence/"><i class="fa fa-book"></i> Licence</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/authors/"><i class="fa fa-book"></i> Authors</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/donate/"><i class="fa fa-book"></i> Donate</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/privacy/"><i class="fa fa-book"></i> Privacy Policy</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b> Commands</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_config/"><i class="fa fa-book"></i> rclone config</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_copy/"><i class="fa fa-book"></i> rclone copy</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_sync/"><i class="fa fa-book"></i> rclone sync</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_move/"><i class="fa fa-book"></i> rclone move</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_purge/"><i class="fa fa-book"></i> rclone purge</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_mkdir/"><i class="fa fa-book"></i> rclone mkdir</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_rmdir/"><i class="fa fa-book"></i> rclone rmdir</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_check/"><i class="fa fa-book"></i> rclone check</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_ls/"><i class="fa fa-book"></i> rclone ls</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_lsd/"><i class="fa fa-book"></i> rclone lsd</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_delete/"><i class="fa fa-book"></i> rclone delete</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_size/"><i class="fa fa-book"></i> rclone size</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/"><i class="fa fa-book"></i> ...and the rest</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b> Storage Systems</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/digipowers/rclone/docs/public/overview/"><i class="fa fa-archive"></i> Overview</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/drive/"><i class="fa fa-google"></i> Drive</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/s3/"><i class="fa fa-amazon"></i> S3</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/swift/"><i class="fa fa-space-shuttle"></i> Swift</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/dropbox/"><i class="fa fa-dropbox"></i> Dropbox</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/googlecloudstorage/"><i class="fa fa-google"></i> Google Cloud Storage</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/amazonclouddrive/"><i class="fa fa-amazon"></i> Amazon Drive</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/onedrive/"><i class="fa fa-windows"></i> Microsoft One Drive</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/hubic/"><i class="fa fa-space-shuttle"></i> Hubic</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/b2/"><i class="fa fa-fire"></i> Backblaze B2</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/local/"><i class="fa fa-file"></i> Local</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/yandex/"><i class="fa fa-space-shuttle"></i> Yandex Disk</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/crypt/"><i class="fa fa-lock"></i> Crypt (encrypts the above)</a></li>
+                  </ul>
+                </li>
+                <li><a href="/digipowers/rclone/docs/public/contact/"><i class="fa fa-envelope"></i> Contact</a></li>
+              </ul>
+            </div>
+        </div>
+    </nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      
+
+<h2 id="i-class-fa-fa-google-i-google-cloud-storage"><i class="fa fa-google"></i> Google Cloud Storage</h2>
+
+<p>Paths are specified as <code>remote:bucket</code> (or <code>remote:</code> for the <code>lsd</code>
+command.)  You may put subdirectories in too, eg <code>remote:bucket/path/to/dir</code>.</p>
+
+<p>The initial setup for google cloud storage involves getting a token from Google Cloud Storage
+which you need to do in your browser.  <code>rclone config</code> walks you
+through it.</p>
+
+<p>Here is an example of how to make a remote called <code>remote</code>.  First run:</p>
+
+<pre><code> rclone config
+</code></pre>
+
+<p>This will guide you through an interactive setup process:</p>
+
+<pre><code>n) New remote
+d) Delete remote
+q) Quit config
+e/n/d/q&gt; n
+name&gt; remote
+Type of storage to configure.
+Choose a number from below, or type in your own value
+ 1 / Amazon Drive
+   \ &quot;amazon cloud drive&quot;
+ 2 / Amazon S3 (also Dreamhost, Ceph)
+   \ &quot;s3&quot;
+ 3 / Backblaze B2
+   \ &quot;b2&quot;
+ 4 / Dropbox
+   \ &quot;dropbox&quot;
+ 5 / Google Cloud Storage (this is not Google Drive)
+   \ &quot;google cloud storage&quot;
+ 6 / Google Drive
+   \ &quot;drive&quot;
+ 7 / Hubic
+   \ &quot;hubic&quot;
+ 8 / Local Disk
+   \ &quot;local&quot;
+ 9 / Microsoft OneDrive
+   \ &quot;onedrive&quot;
+10 / Openstack Swift (Rackspace Cloud Files, Memset Memstore, OVH)
+   \ &quot;swift&quot;
+11 / Yandex Disk
+   \ &quot;yandex&quot;
+Storage&gt; 5
+Google Application Client Id - leave blank normally.
+client_id&gt; 
+Google Application Client Secret - leave blank normally.
+client_secret&gt; 
+Project number optional - needed only for list/create/delete buckets - see your developer console.
+project_number&gt; 12345678
+Service Account Credentials JSON file path - needed only if you want use SA instead of interactive login.
+service_account_file&gt; 
+Access Control List for new objects.
+Choose a number from below, or type in your own value
+ * Object owner gets OWNER access, and all Authenticated Users get READER access.
+ 1) authenticatedRead
+ * Object owner gets OWNER access, and project team owners get OWNER access.
+ 2) bucketOwnerFullControl
+ * Object owner gets OWNER access, and project team owners get READER access.
+ 3) bucketOwnerRead
+ * Object owner gets OWNER access [default if left blank].
+ 4) private
+ * Object owner gets OWNER access, and project team members get access according to their roles.
+ 5) projectPrivate
+ * Object owner gets OWNER access, and all Users get READER access.
+ 6) publicRead
+object_acl&gt; 4
+Access Control List for new buckets.
+Choose a number from below, or type in your own value
+ * Project team owners get OWNER access, and all Authenticated Users get READER access.
+ 1) authenticatedRead
+ * Project team owners get OWNER access [default if left blank].
+ 2) private
+ * Project team members get access according to their roles.
+ 3) projectPrivate
+ * Project team owners get OWNER access, and all Users get READER access.
+ 4) publicRead
+ * Project team owners get OWNER access, and all Users get WRITER access.
+ 5) publicReadWrite
+bucket_acl&gt; 2
+Remote config
+Remote config
+Use auto config?
+ * Say Y if not sure
+ * Say N if you are working on a remote or headless machine or Y didn't work
+y) Yes
+n) No
+y/n&gt; y
+If your browser doesn't open automatically go to the following link: http://127.0.0.1:53682/auth
+Log in and authorize rclone for access
+Waiting for code...
+Got code
+--------------------
+[remote]
+type = google cloud storage
+client_id = 
+client_secret = 
+token = {&quot;AccessToken&quot;:&quot;xxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;,&quot;RefreshToken&quot;:&quot;x/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx_xxxxxxxxx&quot;,&quot;Expiry&quot;:&quot;2014-07-17T20:49:14.929208288+01:00&quot;,&quot;Extra&quot;:null}
+project_number = 12345678
+object_acl = private
+bucket_acl = private
+--------------------
+y) Yes this is OK
+e) Edit this remote
+d) Delete this remote
+y/e/d&gt; y
+</code></pre>
+
+<p>Note that rclone runs a webserver on your local machine to collect the
+token as returned from Google if you use auto config mode. This only
+runs from the moment it opens your browser to the moment you get back
+the verification code.  This is on <code>http://127.0.0.1:53682/</code> and this
+it may require you to unblock it temporarily if you are running a host
+firewall, or use manual mode.</p>
+
+<p>This remote is called <code>remote</code> and can now be used like this</p>
+
+<p>See all the buckets in your project</p>
+
+<pre><code>rclone lsd remote:
+</code></pre>
+
+<p>Make a new bucket</p>
+
+<pre><code>rclone mkdir remote:bucket
+</code></pre>
+
+<p>List the contents of a bucket</p>
+
+<pre><code>rclone ls remote:bucket
+</code></pre>
+
+<p>Sync <code>/home/local/directory</code> to the remote bucket, deleting any excess
+files in the bucket.</p>
+
+<pre><code>rclone sync /home/local/directory remote:bucket
+</code></pre>
+
+<h3 id="service-account-support">Service Account support</h3>
+
+<p>You can set up rclone with Google Cloud Storage in an unattended mode,
+i.e. not tied to a specific end-user Google account. This is useful
+when you want to synchronise files onto machines that don&rsquo;t have
+actively logged-in users, for example build machines.</p>
+
+<p>To get credentials for Google Cloud Platform
+<a href="https://cloud.google.com/iam/docs/service-accounts">IAM Service Accounts</a>,
+please head to the
+<a href="https://console.cloud.google.com/permissions/serviceaccounts">Service Account</a>
+section of the Google Developer Console. Service Accounts behave just
+like normal <code>User</code> permissions in
+<a href="https://cloud.google.com/storage/docs/access-control">Google Cloud Storage ACLs</a>,
+so you can limit their access (e.g. make them read only). After
+creating an account, a JSON file containing the Service Account&rsquo;s
+credentials will be downloaded onto your machines. These credentials
+are what rclone will use for authentication.</p>
+
+<p>To use a Service Account instead of OAuth2 token flow, enter the path
+to your Service Account credentials at the <code>service_account_file</code>
+prompt and rclone won&rsquo;t use the browser based authentication
+flow.</p>
+
+<h3 id="modified-time">Modified time</h3>
+
+<p>Google google cloud storage stores md5sums natively and rclone stores
+modification times as metadata on the object, under the &ldquo;mtime&rdquo; key in
+RFC3339 format accurate to 1ns.</p>
+
+    </div>
+    
+    
+    <div class="col-md-3">
+          <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Share and Enjoy.</h4>
+        </div>
+        <div class="panel-body">
+          <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="njcw">Tweet</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+          <br><g:plusone size="medium"></g:plusone>
+          <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+          <br><iframe src="http://ghbtns.com/github-btn.html?user=ncw&repo=rclone&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20"></iframe>
+          <br><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Frclone.org%2F&amp;width=110&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=21&amp;appId=232073720158744" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:21px;" allowTransparency="true"></iframe>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Links.</h4>
+        </div>
+        <div class="panel-body">
+          <p>
+            <i class="fa fa-comments" aria-hidden="true"></i> <a href="https://forum.rclone.org">Rclone forum.</a><br />
+            <i class="fa fa-github" aria-hidden="true"></i> <a href="https://github.com/ncw/rclone">Github project.</a><br />
+            <i class="fa fa-google-plus" aria-hidden="true"></i> <a href="https://google.com/+RcloneOrg" rel="publisher">Google+ page.</a><br />
+            <i class="fa fa-twitter" aria-hidden="true"></i> <a href="https://twitter.com/njcw">@njcw</a>
+          </p>
+        </div>
+    </div>
+
+    </div>
+  </div>
+          <footer>
+            <div class="row">
+                <hr>
+                <div class="col-sm-12">
+                    <p>&copy; <a href="http://www.craig-wood.com/nick/">Nick Craig-Wood</a> 2014-2016<br>
+                      Website hosted on a <a href="http://www.memset.com/cloud/storage/">FREE <span style="font-weight: bold; font-family: arial black, arial, sans-serif; font-style: italic;">MEMSET MEMSTORE™</span></a>,
+                      uploaded with <a href="http://rclone.org">rclone</a>
+                      and built with <a href="https://github.com/spf13/hugo">Hugo</a></p>
+                </div>
+            </div>
+        </footer>
+
+</div>
+
+    <script src="/digipowers/rclone/docs/public/js/jquery.js"></script>
+    <script src="/digipowers/rclone/docs/public/js/bootstrap.js"></script>
+    <script src="/digipowers/rclone/docs/public/js/custom.js"></script>
+</body>
+</html>
+

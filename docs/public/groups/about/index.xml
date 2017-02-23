@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title> on rclone - rsync for cloud storage </title>
+    <link>/digipowers/rclone/docs/public/groups/about.xml</link>
+    <language>en-US</language>
+    <author>Enthusiastic Hugo User</author>
+    <rights>Copyright (c) 2014, Enthusiastic Hugo User; all rights reserved.</rights>
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Rclone</title>
+      <link>/digipowers/rclone/docs/public/about.html</link>
+      <pubDate>Sun, 06 Sep 2015 00:00:00 UTC</pubDate>
+      <author>Enthusiastic Hugo User</author>
+      <guid>/digipowers/rclone/docs/public/about.html</guid>
+      <description>
+
+&lt;h1 id=&#34;rclone&#34;&gt;Rclone&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://rclone.org/&#34;&gt;&lt;img src=&#34;/digipowers/rclone/docs/public/img/rclone-120x120.png&#34; alt=&#34;Logo&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Rclone is a command line program to sync files and directories to and from&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Google Drive&lt;/li&gt;
+&lt;li&gt;Amazon S3&lt;/li&gt;
+&lt;li&gt;Openstack Swift / Rackspace cloud files / Memset Memstore&lt;/li&gt;
+&lt;li&gt;Dropbox&lt;/li&gt;
+&lt;li&gt;Google Cloud Storage&lt;/li&gt;
+&lt;li&gt;Amazon Drive&lt;/li&gt;
+&lt;li&gt;Microsoft One Drive&lt;/li&gt;
+&lt;li&gt;Hubic&lt;/li&gt;
+&lt;li&gt;Backblaze B2&lt;/li&gt;
+&lt;li&gt;Yandex Disk&lt;/li&gt;
+&lt;li&gt;The local filesystem&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Features&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;MD5/SHA1 hashes checked at all times for file integrity&lt;/li&gt;
+&lt;li&gt;Timestamps preserved on files&lt;/li&gt;
+&lt;li&gt;Partial syncs supported on a whole file basis&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_copy/&#34;&gt;Copy&lt;/a&gt; mode to just copy new/changed files&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_sync/&#34;&gt;Sync&lt;/a&gt; (one way) mode to make a directory identical&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_check/&#34;&gt;Check&lt;/a&gt; mode to check for file hash equality&lt;/li&gt;
+&lt;li&gt;Can sync to and from network, eg two different cloud accounts&lt;/li&gt;
+&lt;li&gt;Optional encryption (&lt;a href=&#34;/digipowers/rclone/docs/public/crypt/&#34;&gt;Crypt&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Optional FUSE mount (&lt;a href=&#34;/digipowers/rclone/docs/public/commands/rclone_mount/&#34;&gt;rclone mount&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Links&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;i class=&#34;fa fa-home&#34;&gt;&lt;/i&gt; &lt;a href=&#34;http://rclone.org/&#34;&gt;Home page&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;i class=&#34;fa fa-github&#34;&gt;&lt;/i&gt; &lt;a href=&#34;http://github.com/ncw/rclone&#34;&gt;Github project page for source and bug tracker&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;i class=&#34;fa fa-google-plus&#34;&gt;&lt;/i&gt; &lt;a href=&#34;https://google.com/+RcloneOrg&#34; rel=&#34;publisher&#34;&gt;Google+ page&lt;/a&gt;&lt;/li&gt;&lt;/li&gt;
+&lt;li&gt;&lt;i class=&#34;fa fa-cloud-download&#34;&gt;&lt;/i&gt;&lt;a href=&#34;/digipowers/rclone/docs/public/downloads/&#34;&gt;Downloads&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

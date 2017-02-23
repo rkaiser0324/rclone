@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rclone docs for Google drive">
+    <meta name="author" content="Nick Craig-Wood">
+    <link rel="shortcut icon" type="image/png" href="/digipowers/rclone/docs/public/img/rclone-16x16.png"/>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-51081799-1', 'rclone.org');
+      ga('send', 'pageview');
+    </script>
+
+    <title>Google drive</title>
+    <link rel="canonical" href="/digipowers/rclone/docs/public/digipowers/rclone/docs/public/drive.html">
+        <link href="/digipowers/rclone/docs/public/css/bootstrap.css" rel="stylesheet">
+    <link href="/digipowers/rclone/docs/public/css/font-awesome.css" rel="stylesheet">
+    <link href="/digipowers/rclone/docs/public/css/custom.css" rel="stylesheet">
+
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/digipowers/rclone/docs/public/digipowers/rclone/docs/public/"><i class="fa fa-home"></i> rclone - rsync for cloud storage</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="/digipowers/rclone/docs/public/downloads/"><i class="fa fa-cloud-download"></i> Downloads</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b> Docs</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/digipowers/rclone/docs/public/install/"><i class="fa fa-book"></i> Installation</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/docs/"><i class="fa fa-book"></i> Usage</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/filtering/"><i class="fa fa-book"></i> Filtering</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/changelog/"><i class="fa fa-book"></i> Changelog</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/bugs/"><i class="fa fa-book"></i> Bugs</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/faq/"><i class="fa fa-book"></i> FAQ</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/licence/"><i class="fa fa-book"></i> Licence</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/authors/"><i class="fa fa-book"></i> Authors</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/donate/"><i class="fa fa-book"></i> Donate</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/privacy/"><i class="fa fa-book"></i> Privacy Policy</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b> Commands</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_config/"><i class="fa fa-book"></i> rclone config</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_copy/"><i class="fa fa-book"></i> rclone copy</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_sync/"><i class="fa fa-book"></i> rclone sync</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_move/"><i class="fa fa-book"></i> rclone move</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_purge/"><i class="fa fa-book"></i> rclone purge</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_mkdir/"><i class="fa fa-book"></i> rclone mkdir</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_rmdir/"><i class="fa fa-book"></i> rclone rmdir</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_check/"><i class="fa fa-book"></i> rclone check</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_ls/"><i class="fa fa-book"></i> rclone ls</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_lsd/"><i class="fa fa-book"></i> rclone lsd</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_delete/"><i class="fa fa-book"></i> rclone delete</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/rclone_size/"><i class="fa fa-book"></i> rclone size</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/commands/"><i class="fa fa-book"></i> ...and the rest</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b> Storage Systems</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/digipowers/rclone/docs/public/overview/"><i class="fa fa-archive"></i> Overview</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/drive/"><i class="fa fa-google"></i> Drive</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/s3/"><i class="fa fa-amazon"></i> S3</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/swift/"><i class="fa fa-space-shuttle"></i> Swift</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/dropbox/"><i class="fa fa-dropbox"></i> Dropbox</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/googlecloudstorage/"><i class="fa fa-google"></i> Google Cloud Storage</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/amazonclouddrive/"><i class="fa fa-amazon"></i> Amazon Drive</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/onedrive/"><i class="fa fa-windows"></i> Microsoft One Drive</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/hubic/"><i class="fa fa-space-shuttle"></i> Hubic</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/b2/"><i class="fa fa-fire"></i> Backblaze B2</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/local/"><i class="fa fa-file"></i> Local</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/yandex/"><i class="fa fa-space-shuttle"></i> Yandex Disk</a></li>
+                    <li><a href="/digipowers/rclone/docs/public/crypt/"><i class="fa fa-lock"></i> Crypt (encrypts the above)</a></li>
+                  </ul>
+                </li>
+                <li><a href="/digipowers/rclone/docs/public/contact/"><i class="fa fa-envelope"></i> Contact</a></li>
+              </ul>
+            </div>
+        </div>
+    </nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      
+
+<h2 id="i-class-fa-fa-google-i-google-drive"><i class="fa fa-google"></i> Google Drive</h2>
+
+<p>Paths are specified as <code>drive:path</code></p>
+
+<p>Drive paths may be as deep as required, eg <code>drive:directory/subdirectory</code>.</p>
+
+<p>The initial setup for drive involves getting a token from Google drive
+which you need to do in your browser.  <code>rclone config</code> walks you
+through it.</p>
+
+<p>Here is an example of how to make a remote called <code>remote</code>.  First run:</p>
+
+<pre><code> rclone config
+</code></pre>
+
+<p>This will guide you through an interactive setup process:</p>
+
+<pre><code>n) New remote
+d) Delete remote
+q) Quit config
+e/n/d/q&gt; n
+name&gt; remote
+Type of storage to configure.
+Choose a number from below, or type in your own value
+ 1 / Amazon Drive
+   \ &quot;amazon cloud drive&quot;
+ 2 / Amazon S3 (also Dreamhost, Ceph)
+   \ &quot;s3&quot;
+ 3 / Backblaze B2
+   \ &quot;b2&quot;
+ 4 / Dropbox
+   \ &quot;dropbox&quot;
+ 5 / Google Cloud Storage (this is not Google Drive)
+   \ &quot;google cloud storage&quot;
+ 6 / Google Drive
+   \ &quot;drive&quot;
+ 7 / Hubic
+   \ &quot;hubic&quot;
+ 8 / Local Disk
+   \ &quot;local&quot;
+ 9 / Microsoft OneDrive
+   \ &quot;onedrive&quot;
+10 / Openstack Swift (Rackspace Cloud Files, Memset Memstore, OVH)
+   \ &quot;swift&quot;
+11 / Yandex Disk
+   \ &quot;yandex&quot;
+Storage&gt; 6
+Google Application Client Id - leave blank normally.
+client_id&gt; 
+Google Application Client Secret - leave blank normally.
+client_secret&gt; 
+Remote config
+Use auto config?
+ * Say Y if not sure
+ * Say N if you are working on a remote or headless machine or Y didn't work
+y) Yes
+n) No
+y/n&gt; y
+If your browser doesn't open automatically go to the following link: http://127.0.0.1:53682/auth
+Log in and authorize rclone for access
+Waiting for code...
+Got code
+--------------------
+[remote]
+client_id = 
+client_secret = 
+token = {&quot;AccessToken&quot;:&quot;xxxx.x.xxxxx_xxxxxxxxxxx_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;,&quot;RefreshToken&quot;:&quot;1/xxxxxxxxxxxxxxxx_xxxxxxxxxxxxxxxxxxxxxxxxxx&quot;,&quot;Expiry&quot;:&quot;2014-03-16T13:57:58.955387075Z&quot;,&quot;Extra&quot;:null}
+--------------------
+y) Yes this is OK
+e) Edit this remote
+d) Delete this remote
+y/e/d&gt; y
+</code></pre>
+
+<p>Note that rclone runs a webserver on your local machine to collect the
+token as returned from Google if you use auto config mode. This only
+runs from the moment it opens your browser to the moment you get back
+the verification code.  This is on <code>http://127.0.0.1:53682/</code> and this
+it may require you to unblock it temporarily if you are running a host
+firewall, or use manual mode.</p>
+
+<p>You can then use it like this,</p>
+
+<p>List directories in top level of your drive</p>
+
+<pre><code>rclone lsd remote:
+</code></pre>
+
+<p>List all the files in your drive</p>
+
+<pre><code>rclone ls remote:
+</code></pre>
+
+<p>To copy a local directory to a drive directory called backup</p>
+
+<pre><code>rclone copy /home/source remote:backup
+</code></pre>
+
+<h3 id="modified-time">Modified time</h3>
+
+<p>Google drive stores modification times accurate to 1 ms.</p>
+
+<h3 id="revisions">Revisions</h3>
+
+<p>Google drive stores revisions of files.  When you upload a change to
+an existing file to google drive using rclone it will create a new
+revision of that file.</p>
+
+<p>Revisions follow the standard google policy which at time of writing
+was</p>
+
+<ul>
+<li>They are deleted after 30 days or 100 revisions (whatever comes first).</li>
+<li>They do not count towards a user storage quota.</li>
+</ul>
+
+<h3 id="deleting-files">Deleting files</h3>
+
+<p>By default rclone will delete files permanently when requested.  If
+sending them to the trash is required instead then use the
+<code>--drive-use-trash</code> flag.</p>
+
+<h3 id="specific-options">Specific options</h3>
+
+<p>Here are the command line options specific to this cloud storage
+system.</p>
+
+<h4 id="drive-chunk-size-size">--drive-chunk-size=SIZE</h4>
+
+<p>Upload chunk size. Must a power of 2 &gt;= 256k. Default value is 8 MB.</p>
+
+<p>Making this larger will improve performance, but note that each chunk
+is buffered in memory one per transfer.</p>
+
+<p>Reducing this will reduce memory usage but decrease performance.</p>
+
+<h4 id="drive-full-list">--drive-full-list</h4>
+
+<p>No longer does anything - kept for backwards compatibility.</p>
+
+<h4 id="drive-upload-cutoff-size">--drive-upload-cutoff=SIZE</h4>
+
+<p>File size cutoff for switching to chunked upload.  Default is 8 MB.</p>
+
+<h4 id="drive-use-trash">--drive-use-trash</h4>
+
+<p>Send files to the trash instead of deleting permanently. Defaults to
+off, namely deleting files permanently.</p>
+
+<h4 id="drive-auth-owner-only">--drive-auth-owner-only</h4>
+
+<p>Only consider files owned by the authenticated user. Requires
+that --drive-full-list=true (default).</p>
+
+<h4 id="drive-formats">--drive-formats</h4>
+
+<p>Google documents can only be exported from Google drive.  When rclone
+downloads a Google doc it chooses a format to download depending upon
+this setting.</p>
+
+<p>By default the formats are <code>docx,xlsx,pptx,svg</code> which are a sensible
+default for an editable document.</p>
+
+<p>When choosing a format, rclone runs down the list provided in order
+and chooses the first file format the doc can be exported as from the
+list. If the file can&rsquo;t be exported to a format on the formats list,
+then rclone will choose a format from the default list.</p>
+
+<p>If you prefer an archive copy then you might use <code>--drive-formats
+pdf</code>, or if you prefer openoffice/libreoffice formats you might use
+<code>--drive-formats ods,odt</code>.</p>
+
+<p>Note that rclone adds the extension to the google doc, so if it is
+calles <code>My Spreadsheet</code> on google docs, it will be exported as <code>My
+Spreadsheet.xlsx</code> or <code>My Spreadsheet.pdf</code> etc.</p>
+
+<p>Here are the possible extensions with their corresponding mime types.</p>
+
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Mime Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>csv</td>
+<td>text/csv</td>
+<td>Standard CSV format for Spreadsheets</td>
+</tr>
+
+<tr>
+<td>doc</td>
+<td>application/msword</td>
+<td>Micosoft Office Document</td>
+</tr>
+
+<tr>
+<td>docx</td>
+<td>application/vnd.openxmlformats-officedocument.wordprocessingml.document</td>
+<td>Microsoft Office Document</td>
+</tr>
+
+<tr>
+<td>epub</td>
+<td>application/epub+zip</td>
+<td>E-book format</td>
+</tr>
+
+<tr>
+<td>html</td>
+<td>text/html</td>
+<td>An HTML Document</td>
+</tr>
+
+<tr>
+<td>jpg</td>
+<td>image/jpeg</td>
+<td>A JPEG Image File</td>
+</tr>
+
+<tr>
+<td>odp</td>
+<td>application/vnd.oasis.opendocument.presentation</td>
+<td>Openoffice Presentation</td>
+</tr>
+
+<tr>
+<td>ods</td>
+<td>application/vnd.oasis.opendocument.spreadsheet</td>
+<td>Openoffice Spreadsheet</td>
+</tr>
+
+<tr>
+<td>ods</td>
+<td>application/x-vnd.oasis.opendocument.spreadsheet</td>
+<td>Openoffice Spreadsheet</td>
+</tr>
+
+<tr>
+<td>odt</td>
+<td>application/vnd.oasis.opendocument.text</td>
+<td>Openoffice Document</td>
+</tr>
+
+<tr>
+<td>pdf</td>
+<td>application/pdf</td>
+<td>Adobe PDF Format</td>
+</tr>
+
+<tr>
+<td>png</td>
+<td>image/png</td>
+<td>PNG Image Format</td>
+</tr>
+
+<tr>
+<td>pptx</td>
+<td>application/vnd.openxmlformats-officedocument.presentationml.presentation</td>
+<td>Microsoft Office Powerpoint</td>
+</tr>
+
+<tr>
+<td>rtf</td>
+<td>application/rtf</td>
+<td>Rich Text Format</td>
+</tr>
+
+<tr>
+<td>svg</td>
+<td>image/svg+xml</td>
+<td>Scalable Vector Graphics Format</td>
+</tr>
+
+<tr>
+<td>tsv</td>
+<td>text/tab-separated-values</td>
+<td>Standard TSV format for spreadsheets</td>
+</tr>
+
+<tr>
+<td>txt</td>
+<td>text/plain</td>
+<td>Plain Text</td>
+</tr>
+
+<tr>
+<td>xls</td>
+<td>application/vnd.ms-excel</td>
+<td>Microsoft Office Spreadsheet</td>
+</tr>
+
+<tr>
+<td>xlsx</td>
+<td>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</td>
+<td>Microsoft Office Spreadsheet</td>
+</tr>
+
+<tr>
+<td>zip</td>
+<td>application/zip</td>
+<td>A ZIP file of HTML, Images CSS</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="limitations">Limitations</h3>
+
+<p>Drive has quite a lot of rate limiting.  This causes rclone to be
+limited to transferring about 2 files per second only.  Individual
+files may be transferred much faster at 100s of MBytes/s but lots of
+small files can take a long time.</p>
+
+<h3 id="making-your-own-client-id">Making your own client_id</h3>
+
+<p>When you use rclone with Google drive in its default configuration you
+are using rclone&rsquo;s client_id.  This is shared between all the rclone
+users.  There is a global rate limit on the number of queries per
+second that each client_id can do set by Google.  rclone already has a
+high quota and I will continue to make sure it is high enough by
+contacting Google.</p>
+
+<p>However you might find you get better performance making your own
+client_id if you are a heavy user. Or you may not depending on exactly
+how Google have been raising rclone&rsquo;s rate limit.</p>
+
+<p>Here is how to create your own Google Drive client ID for rclone:</p>
+
+<ol>
+<li><p>Log into the <a href="https://console.developers.google.com/">Google API
+Console</a> with your Google
+account. It doesn&rsquo;t matter what Google account you use. (It need not
+be the same account as the Google Drive you want to access)</p></li>
+
+<li><p>Select a project or create a new project.</p></li>
+
+<li><p>Under Overview, Google APIs, Google Apps APIs, click &ldquo;Drive API&rdquo;,
+then &ldquo;Enable&rdquo;.</p></li>
+
+<li><p>Click &ldquo;Credentials&rdquo; in the left-side panel (not &ldquo;Go to
+credentials&rdquo;, which opens the wizard), then &ldquo;Create credentials&rdquo;, then
+&ldquo;OAuth client ID&rdquo;.  It will prompt you to set the OAuth consent screen
+product name, if you haven&rsquo;t set one already.</p></li>
+
+<li><p>Choose an application type of &ldquo;other&rdquo;, and click &ldquo;Create&rdquo;. (the
+default name is fine)</p></li>
+
+<li><p>It will show you a client ID and client secret.  Use these values
+in rclone config to add a new remote or edit an existing remote.</p></li>
+</ol>
+
+<p>(Thanks to @balazer on github for these instructions.)</p>
+
+    </div>
+    
+    
+    <div class="col-md-3">
+          <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Share and Enjoy.</h4>
+        </div>
+        <div class="panel-body">
+          <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="njcw">Tweet</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+          <br><g:plusone size="medium"></g:plusone>
+          <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+          <br><iframe src="http://ghbtns.com/github-btn.html?user=ncw&repo=rclone&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20"></iframe>
+          <br><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Frclone.org%2F&amp;width=110&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=21&amp;appId=232073720158744" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:21px;" allowTransparency="true"></iframe>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Links.</h4>
+        </div>
+        <div class="panel-body">
+          <p>
+            <i class="fa fa-comments" aria-hidden="true"></i> <a href="https://forum.rclone.org">Rclone forum.</a><br />
+            <i class="fa fa-github" aria-hidden="true"></i> <a href="https://github.com/ncw/rclone">Github project.</a><br />
+            <i class="fa fa-google-plus" aria-hidden="true"></i> <a href="https://google.com/+RcloneOrg" rel="publisher">Google+ page.</a><br />
+            <i class="fa fa-twitter" aria-hidden="true"></i> <a href="https://twitter.com/njcw">@njcw</a>
+          </p>
+        </div>
+    </div>
+
+    </div>
+  </div>
+          <footer>
+            <div class="row">
+                <hr>
+                <div class="col-sm-12">
+                    <p>&copy; <a href="http://www.craig-wood.com/nick/">Nick Craig-Wood</a> 2014-2016<br>
+                      Website hosted on a <a href="http://www.memset.com/cloud/storage/">FREE <span style="font-weight: bold; font-family: arial black, arial, sans-serif; font-style: italic;">MEMSET MEMSTORE™</span></a>,
+                      uploaded with <a href="http://rclone.org">rclone</a>
+                      and built with <a href="https://github.com/spf13/hugo">Hugo</a></p>
+                </div>
+            </div>
+        </footer>
+
+</div>
+
+    <script src="/digipowers/rclone/docs/public/js/jquery.js"></script>
+    <script src="/digipowers/rclone/docs/public/js/bootstrap.js"></script>
+    <script src="/digipowers/rclone/docs/public/js/custom.js"></script>
+</body>
+</html>
+
